@@ -1,7 +1,22 @@
 #header{
-    
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+
     .headerLogo img{
         width: 5rem;
+    }
+
+    ul {
+        list-style: none;
+    }
+    nav ul{
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 2rem;
     }
 }
 
