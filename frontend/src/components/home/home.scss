@@ -1,0 +1,19 @@
+.home{
+    grid-area: home;
+    background-color: blue;
+    width: 60vw;
+    height: 70vh;
+}
+
+@media screen and (max-width: 992px) {
+    .home{
+        width: 80vw;
+    }
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 768px) {
+    .home{
+        width: 100vw;
+    }
+  }

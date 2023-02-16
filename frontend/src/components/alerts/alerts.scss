@@ -1,0 +1,44 @@
+.alerts{
+    grid-area: alerts;
+    background-color: red;
+    width: 20vw;
+    height: 50vh;
+    
+    > ul {
+        list-style: none;
+    }
+}
+
+.alerts-h{
+    display: block;
+}
+
+.alerts-v{
+    display: none;
+}
+
+
+@media screen and (max-width: 992px){
+    .alerts{
+        width: 100vw;
+        height: 5vh;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .alerts-h{
+        display: none;
+    }
+    
+    .alerts-v{
+        width: 100%;
+        display: block;
+        > marquee{
+            color: black;
+
+            > p{
+                max-width: 5rem;
+            }
+        }
+    }
+}

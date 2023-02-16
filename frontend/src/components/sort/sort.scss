@@ -1,0 +1,17 @@
+.sort{
+    grid-area: sort;
+    background-color: yellow;
+    width: 20vw;
+    height: 50vh;
+}
+
+@media screen and (max-width: 992px) {
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 768px) {
+    .sort{
+        width: 100vw;
+        height: 25vh;
+    }
+  }

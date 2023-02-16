@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+html{
+    font-size: 10px;
+}
+
+.App{
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'sort home alerts'
+        'footer footer footer';
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+}
+
+/* ================ BREAKPOINS ===============*/
+/* For large devices  */
+@media screen and (max-width: 992px) {
+    .App{
+        grid-template-areas:
+            'header header'
+            'alerts alerts'
+            'sort home'
+            'footer footer';
+    }
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 768px) {
+    .App{
+        grid-template-areas:
+            'header'
+            'alerts'
+            'sort'
+            'home'
+            'footer';
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    
+  }
+  
+  /* For small devices */
+  @media screen and (max-width: 350px) {
+    
+  }
