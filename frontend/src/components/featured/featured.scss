@@ -1,0 +1,36 @@
+.mySwiper{
+    width: 100%;
+    height: 50vh;
+    background-color: black;
+}
+
+.mySwiper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0% 0%;
+}
+
+/* ================ BREAKPOINS ===============*/
+/* For large devices  */
+@media screen and (max-width: 992px) {
+    
+   
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 768px) {
+    
+  }
+  
+  @media screen and (max-width: 576px) {
+    .mySwiper{
+        width: 100%;
+        height: 35vh;
+    }
+  }
+  
+  /* For small devices */
+  @media screen and (max-width: 350px) {
+  }
+  

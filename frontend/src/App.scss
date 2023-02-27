@@ -1,53 +1,88 @@
-*{
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
+/* ================ BASE ===============*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-    font-size: 10px;
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  color: black;
 }
 
-.App{
-    display: grid;
-    grid-template-areas:
-        'header header header'
-        'sort home alerts'
-        'footer footer footer';
-    font-size: 2rem;
-    text-align: center;
-    color: white;
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ================ Layout ===============*/
+
+// .App {
+//   display: grid;
+//   grid-template-areas:
+//     "header header header"
+//     "sort home alerts"
+//     "footer footer footer";
+// }
+
+/* ================ Reusable Class ===============*/
+.flex{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button{
+  padding: .5rem 1.5rem;
+  border-radius: 5px;
 }
 
 /* ================ BREAKPOINS ===============*/
 /* For large devices  */
 @media screen and (max-width: 992px) {
-    .App{
-        grid-template-areas:
-            'header header'
-            'alerts alerts'
-            'sort home'
-            'footer footer';
-    }
-  }
-  
-  /* For medium devices */
-  @media screen and (max-width: 768px) {
-    .App{
-        grid-template-areas:
-            'header'
-            'alerts'
-            'sort'
-            'home'
-            'footer';
-    }
-  }
-  
-  @media screen and (max-width: 576px) {
-    
-  }
-  
-  /* For small devices */
-  @media screen and (max-width: 350px) {
-    
-  }
+  // .App {
+  //   grid-template-areas:
+  //     "header header"
+  //     "alerts alerts"
+  //     "sort home"
+  //     "footer footer";
+  // }
+ 
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  // .App {
+  //   grid-template-areas:
+  //     "header"
+  //     "alerts"
+  //     "sort"
+  //     "home"
+  //     "footer";
+  // }
+ 
+}
+
+@media screen and (max-width: 576px) {
+ 
+}
+
+/* For small devices */
+@media screen and (max-width: 350px) {
+}

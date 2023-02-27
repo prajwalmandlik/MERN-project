@@ -1,11 +1,16 @@
 import React from 'react'
 import "./home.scss"
+import Featured from "../featured/Featured";
+import Alerts from '../alerts/Alerts';
+import Sort from '../sort/Sort';
 
 const Home = () => {
   return (
-    <div className='home'>
-      Home
-    </div>
+    <>
+      <Featured />
+      <Alerts />
+      <Sort />
+    </>
   )
 }
 

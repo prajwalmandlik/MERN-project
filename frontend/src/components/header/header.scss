@@ -1,23 +1,114 @@
-#header{
-    grid-area: header;
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
+.header {
+  width: 100%;
+  background-color: rgb(39, 39, 39);
+  color: white;
+  padding: 0 2rem;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  place-items: center;
+}
+
+.header-logo {
+  font-size: 1.5rem;
+  gap: 0.5rem;
+  img {
+    width: 2rem;
+  }
+}
+
+.search {
+  font-size: 1.5rem;
+
+  .search-bar {
+    background-color: inherit;
+    color: white;
+    width: 40vw;
+    padding: 10px 15px;
+    border-radius: 25px;
+    outline: none;
+    border: 1px solid rgb(100, 100, 100);
+  }
+
+  i {
+    transform: translateX(-35px);
+    color: rgb(200, 200, 200);
+  }
+}
+
+.navbar {
+  justify-content: end;
+  gap: 1rem;
+  a {
+    background-color: rgb(36, 36, 230);
+    color: white;
+    border-radius: 25px;
+  }
+}
+
+/* ================ BREAKPOINS ===============*/
+/* For large devices  */
+@media screen and (max-width: 992px) {
+  .header-logo {
+    font-size: 1rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .header{
+    grid-template-columns: 3fr 1fr 1fr;
+    place-items: start;
     align-items: center;
-    background-color: black;
+  }
 
-    .headerLogo img{
-        width: 5rem;
+  .search{
+    transform: translateX(15vw);
+
+    .search-bar{
+      display: none;
+    }
+  }
+
+  .active-nav{
+    
+    grid-template-columns: 1fr;
+
+    .header-logo,
+    .navbar{
+      display: none;
     }
 
-    ul {
-        list-style: none;
+    .search{
+      transform: translateX(0);
+      margin: auto;
+
+      .search-bar{
+        display: block;
+        width: 85vw;
+      }
     }
-    nav ul{
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+    .header{
+      grid-template-columns: repeat(3, 1fr);
+      place-items: center;
+    }
+
+    .active-nav{
+      grid-template-columns: 1fr;
     }
 }
 
+/* For small devices */
+@media screen and (max-width: 350px) {
+  .active-nav{
+    grid-template-columns: 1fr;
+
+    .search-bar{
+      width: 80vw;
+    }
+  }
+}
