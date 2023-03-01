@@ -18,19 +18,20 @@
 }
 
 .search {
-  font-size: 1.5rem;
+ 
 
   .search-bar {
     background-color: inherit;
     color: white;
     width: 40vw;
-    padding: 10px 15px;
+    padding: 5px 20px;
     border-radius: 25px;
     outline: none;
     border: 1px solid rgb(100, 100, 100);
   }
 
   i {
+    font-size: 1.3rem;
     transform: translateX(-35px);
     color: rgb(200, 200, 200);
   }
