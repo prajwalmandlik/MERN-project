@@ -1,0 +1,28 @@
+.main-section{
+    margin: 1rem auto;
+}
+
+/* ================ BREAKPOINS ===============*/
+/* For large devices  */
+@media screen and (max-width: 992px) {
+    .main-section{
+        margin: 1rem 2rem;
+    }
+   
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 768px) {
+    .main-section{
+        margin: 1rem;
+    }
+   
+  }
+  
+  @media screen and (max-width: 576px) {
+   
+  }
+  
+  /* For small devices */
+  @media screen and (max-width: 350px) {
+  }

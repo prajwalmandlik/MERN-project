@@ -25,12 +25,13 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import "./sort.scss";
 
 const Sort = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <HStack
-        m={["1rem","1rem", "1rem","1rem 10rem"]}
+        maxW={"1080px"}
+        m={"0 auto"}
         bgColor="lightblue"
         p={"2rem"}
         borderRadius={"10px"}
@@ -38,35 +39,40 @@ const Sort = () => {
         wrap="wrap"
         gap={"1rem"}
       >
-        <Menu>
-          <MenuButton
-            as={Button}
-            rightIcon={<ChevronDownIcon />}
-            minWidth="240px"
+        <HStack gap={"1rem"}>
+          <Menu>
+            <MenuButton
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+              minWidth="240px"
+            >
+              All
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Upper class 8</MenuItem>
+              <MenuItem>class 9</MenuItem>
+              <MenuItem>class 8</MenuItem>
+              <MenuItem>class 12</MenuItem>
+              <MenuItem>Post Gradution</MenuItem>
+            </MenuList>
+          </Menu>
+        </HStack>
+        <HStack gap={"1rem"}>
+          <Button>India</Button>
+          <Button>Study Abroad</Button>
+        </HStack>
+        <HStack gap={"1rem"}>
+          <Button
+            leftIcon={<i class="bx bx-filter"></i>}
+            colorScheme="blue"
+            onClick={onOpen}
           >
-            All
-          </MenuButton>
-          <MenuList>
-            <MenuItem>Upper class 8</MenuItem>
-            <MenuItem>class 9</MenuItem>
-            <MenuItem>class 8</MenuItem>
-            <MenuItem>class 12</MenuItem>
-            <MenuItem>Post Gradution</MenuItem>
-          </MenuList>
-        </Menu>
-
-        <Button>India</Button>
-        <Button>Study Abroad</Button>
-        <Button
-          leftIcon={<i class="bx bx-filter"></i>}
-          colorScheme="blue"
-          onClick={onOpen}
-        >
-          Fliter
-        </Button>
-        <Button>Apply</Button>
+            Fliter
+          </Button>
+          <Button>Apply</Button>
+        </HStack>
       </HStack>
-      <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"} >
+      <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Fliter</DrawerHeader>
