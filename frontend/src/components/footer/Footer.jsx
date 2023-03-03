@@ -1,16 +1,15 @@
 import {
   Box,
-  chakra,
   Container,
   Link,
   SimpleGrid,
   Stack,
   Text,
-  VisuallyHidden,
   Input,
   IconButton,
   useColorModeValue,
-  Heading
+  Heading,
+  Button
 } from '@chakra-ui/react';
 // import { ReactNode } from 'react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
@@ -51,17 +50,17 @@ export default function LargeWithNewsletter() {
             <Text fontSize={'sm'}>
               © 2022 Chakra Templates. All rights reserved
             </Text>
-            {/* <Stack direction={'row'} spacing={6}>
-              <SocialButton label={'Twitter'} href={'#'}>
+            <Stack direction={'row'} spacing={6}>
+              <Button label={'Twitter'} href={'#'} borderRadius={"50%"} p={"5px 10px"}>
                 <FaTwitter />
-              </SocialButton>
-              <SocialButton label={'YouTube'} href={'#'}>
+              </Button>
+              <Button label={'YouTube'} href={'#'} borderRadius={"50%"}  p={"5px 10px"}>
                 <FaYoutube />
-              </SocialButton>
-              <SocialButton label={'Instagram'} href={'#'}>
+              </Button>
+              <Button label={'Instagram'} href={'#'} borderRadius={"50%"}  p={"5px 10px"}>
                 <FaInstagram />
-              </SocialButton>
-            </Stack> */}
+              </Button>
+            </Stack>
           </Stack>
           <Stack align={'flex-start'}>
             {/* <ListHeader>Company</ListHeader> */}

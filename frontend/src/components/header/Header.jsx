@@ -7,14 +7,14 @@ const Header = () => {
   const [mobileView, setMobileView] = useState(false);
 
   return (
-    <>
+    <div className="header-cantainer">
       <header
         id="header"
         className={mobileView ? "header active-nav" : "header"}
       >
         <div className="header-logo flex">
           <img src={Img} alt="" />
-          <span>Flare Global</span>
+          <span>ADHIKAR</span>
         </div>
 
         <div className="search flex ">
@@ -35,7 +35,7 @@ const Header = () => {
           </div>
         </nav>
       </header>
-    </>
+    </div>
   );
 };
 

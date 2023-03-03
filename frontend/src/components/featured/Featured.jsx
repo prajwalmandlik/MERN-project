@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Img1 from "../../assets/1.jpg";
 import Img2 from "../../assets/2.jpg";
 import Img3 from "../../assets/3.jpg";
-import Img4 from "../../assets/4.jpg";
+// import Img4 from "../../assets/4.jpg";
 import Img5 from "../../assets/5.jpg";
 import Img6 from "../../assets/6.jpg";
 import "./featured.scss";
@@ -40,9 +40,9 @@ export default function App() {
         <SwiperSlide>
           <img src={Img3} alt="img" />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src={Img4} alt="img" />
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <img src={Img5} alt="img" />
         </SwiperSlide>

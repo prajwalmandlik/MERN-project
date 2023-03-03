@@ -67,7 +67,7 @@ const Sort = () => {
             colorScheme="blue"
             onClick={onOpen}
           >
-            Fliter
+            Fliters
           </Button>
           <Button>Apply</Button>
         </HStack>
@@ -79,9 +79,9 @@ const Sort = () => {
           <DrawerCloseButton />
           <Tabs orientation="vertical" variant={"unstyle"}>
             <TabList minWidth="150px">
-              <Tab>One</Tab>
-              <Tab>Two</Tab>
-              <Tab>Three</Tab>
+              <Tab _selected={{ color: 'white', bg: 'blue.500' }}>One</Tab>
+              <Tab _selected={{ color: 'white', bg: 'blue.500' }}>Two</Tab>
+              <Tab _selected={{ color: 'white', bg: 'blue.500' }}>Three</Tab>
             </TabList>
             <Divider orientation="vertical" />
             <TabPanels>

@@ -1,5 +1,9 @@
+.header-cantainer{
+  background-color:rgb(39, 39, 39) ;
+}
 .header {
-  width: 100%;
+  max-width: 1080px;
+  margin: auto;
   background-color: rgb(39, 39, 39);
   color: white;
   padding: 0 2rem;
@@ -23,7 +27,7 @@
   .search-bar {
     background-color: inherit;
     color: white;
-    width: 40vw;
+    width: 30vw;
     padding: 5px 20px;
     border-radius: 25px;
     outline: none;
