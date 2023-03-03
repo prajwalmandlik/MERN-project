@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./header.scss";
 import Img from "../../assets/logo.png";
 import { Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
@@ -13,8 +14,10 @@ const Header = () => {
         className={mobileView ? "header active-nav" : "header"}
       >
         <div className="header-logo flex">
+          <Link to={`/`} >
           <img src={Img} alt="" />
-          <span>ADHIKAR</span>
+          {/* <span>ADHIKAR</span> */}
+          </Link>
         </div>
 
         <div className="search flex ">
@@ -29,9 +32,11 @@ const Header = () => {
 
         <nav className="navbar flex">
           <div className="login-btn">
-            <Button variant="solid" colorScheme="blue">
-              Sing In
-            </Button>
+            <Link to={`/login`}>
+              <Button variant="solid" colorScheme="blue">
+                Sing In
+              </Button>
+            </Link>
           </div>
         </nav>
       </header>
