@@ -10,7 +10,7 @@ import "./featured.scss";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
+// import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 import { Autoplay,Navigation, EffectFade } from "swiper";
@@ -27,8 +27,8 @@ export default function App() {
       loop={true}
         spaceBetween={30}
         effect={"fade"}
-        navigation={true}
-        modules={[Autoplay,EffectFade, Navigation]}
+        // navigation={true}
+        modules={[Autoplay,EffectFade]}
         className="mySwiper"
       >
         <SwiperSlide>

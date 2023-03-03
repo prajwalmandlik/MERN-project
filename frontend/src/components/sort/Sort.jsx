@@ -35,7 +35,7 @@ const Sort = () => {
         bgColor="lightblue"
         p={"2rem"}
         borderRadius={"10px"}
-        align={"start"}
+        align={"center"}
         wrap="wrap"
         gap={"1rem"}
       >
@@ -57,11 +57,14 @@ const Sort = () => {
             </MenuList>
           </Menu>
         </HStack>
-        <HStack gap={"1rem"}>
-          <Button>India</Button>
-          <Button>Study Abroad</Button>
+        <HStack gap={"1rem"} >
+          <Button p={"0 2rem"} bgColor={"white"}>Women's</Button>
+          <Button p={"0 2rem"} bgColor={"white"}>Education</Button>
+          <Button p={"0 2rem"} bgColor={"white"}>Farmer</Button>
+          <Button p={"0 2rem"} bgColor={"white"}>Health</Button>
+          <Button p={"0 2rem"} bgColor={"white"}>Family</Button>
         </HStack>
-        <HStack gap={"1rem"}>
+        {/* <HStack gap={"1rem"}>
           <Button
             leftIcon={<i class="bx bx-filter"></i>}
             colorScheme="blue"
@@ -70,7 +73,7 @@ const Sort = () => {
             Fliters
           </Button>
           <Button>Apply</Button>
-        </HStack>
+        </HStack> */}
       </HStack>
       <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"}>
         <DrawerOverlay />

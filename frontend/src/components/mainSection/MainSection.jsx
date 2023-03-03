@@ -9,6 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import { data } from "./Data";
 
 const MainSection = () => {
@@ -40,9 +41,11 @@ const MainSection = () => {
           </CardBody>
 
           <CardFooter>
+            <Link to={`/details/${e.id}`} >
             <Button variant="solid" colorScheme="blue">
               Learn More
             </Button>
+            </Link>
             <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
               Apply now
             </Button>

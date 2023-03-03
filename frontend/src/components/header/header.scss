@@ -1,11 +1,11 @@
 .header-cantainer{
-  background-color:rgb(39, 39, 39) ;
+  background-color:rgba(173, 216, 230, 0.1) ;
 }
 .header {
   max-width: 1080px;
   margin: auto;
-  background-color: rgb(39, 39, 39);
-  color: white;
+  // background-color: rgba(173, 216, 230, 0.1);
+  color: black;
   padding: 0 2rem;
   height: 60px;
   display: grid;
@@ -26,7 +26,7 @@
 
   .search-bar {
     background-color: inherit;
-    color: white;
+    color: black;
     width: 30vw;
     padding: 5px 20px;
     border-radius: 25px;
@@ -37,7 +37,7 @@
   i {
     font-size: 1.3rem;
     transform: translateX(-35px);
-    color: rgb(200, 200, 200);
+    color: black;
   }
 }
 
