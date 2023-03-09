@@ -1,13 +1,10 @@
 import {
-  Box,
   Button,
   Card,
   CardBody,
-  CardFooter,
   Heading,
   HStack,
   Image,
-  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -18,7 +15,7 @@ import { data } from "./Data";
 const MainSection = () => {
   return (
     <>
-      {data.map((e) => {
+      {data.map((e, index) => {
         return (
           <Card
             maxW={"1080px"}
@@ -34,7 +31,7 @@ const MainSection = () => {
               alt="Caffe Latte"
             />
 
-            <HStack>
+            <HStack alignItems={"flex-start"}>
               <CardBody>
                 <Heading size="md">{e.name}</Heading>
 
@@ -46,9 +43,11 @@ const MainSection = () => {
                     Learn More
                   </Button>
                 </Link>
-                <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
-                  Apply now
-                </Button>
+                <a href={e.link} target={"blank"}>
+                  <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
+                    Apply now
+                  </Button>
+                </a>
               </VStack>
             </HStack>
           </Card>
