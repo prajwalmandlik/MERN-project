@@ -1,12 +1,15 @@
 import {
   Button,
+  ButtonGroup,
   Card,
   CardBody,
+  CardFooter,
+  Divider,
   Heading,
   HStack,
   Image,
+  Stack,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -15,44 +18,52 @@ import { data } from "./Data";
 const MainSection = () => {
   return (
     <>
-      {data.map((e, index) => {
-        return (
-          <Card
-            maxW={"1080px"}
-            m={"1rem auto"}
-            direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
-            variant="outline"
-          >
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src={e.img}
-              alt="Caffe Latte"
-            />
-
-            <HStack alignItems={"flex-start"}>
+      <HStack
+        m={["1rem", "2rem", "2rem", "auto"]}
+        maxW={"1080px"}
+        wrap={"wrap"}
+        justifyContent={"space-evenly"}
+        rowGap={"2rem"}
+        p={"2rem 0"}
+      >
+        {data.map((e, index) => {
+          return (
+            <Card maxW="md">
               <CardBody>
-                <Heading size="md">{e.name}</Heading>
-
-                <Text py="2">{e.desc}</Text>
+                <Image
+                  src={e.img}
+                  alt={e.name}
+                  borderRadius="lg"
+                  w={"156px"}
+                  h={"156px"}
+                  m={"auto"}
+                />
+                <Stack mt="6" spacing="3">
+                  <Heading size="md" noOfLines={1}>
+                    {e.name}
+                  </Heading>
+                  <Text noOfLines={3}>{e.desc}</Text>
+                </Stack>
               </CardBody>
-              <VStack p={"5rem"} gap={"2rem"}>
-                <Link to={`/details/${e.id}`}>
-                  <Button variant="solid" colorScheme="blue">
-                    Learn More
-                  </Button>
-                </Link>
-                <a href={e.link} target={"blank"}>
-                  <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
-                    Apply now
-                  </Button>
-                </a>
-              </VStack>
-            </HStack>
-          </Card>
-        );
-      })}
+              <Divider />
+              <CardFooter>
+                <ButtonGroup spacing="2">
+                  <Link to={`/details/${index}`}>
+                    <Button variant="solid" colorScheme="blue">
+                      More Info
+                    </Button>
+                  </Link>
+                  <a href={e.link} target={"blank"}>
+                    <Button variant="ghost" colorScheme="blue">
+                      Apply Now
+                    </Button>
+                  </a>
+                </ButtonGroup>
+              </CardFooter>
+            </Card>
+          );
+        })}
+      </HStack>
     </>
   );
 };

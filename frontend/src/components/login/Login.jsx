@@ -6,12 +6,12 @@ import {
     Input,
     Checkbox,
     Stack,
-    Link,
     Button,
     Heading,
-    Text,
     useColorModeValue,
+    Text,
   } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
   
   export default function SimpleCard() {
     return (
@@ -20,11 +20,11 @@ import {
         minH={'100vh'}
         align={'center'}
         justify={'center'}
+        p={"0 0 5rem 0"}
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-          <Stack align={'center'} p={"0 0 5rem 0"}>
+          <Stack align={'center'}>
             <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-          
           </Stack>
           <Box
             rounded={'lg'}
@@ -56,6 +56,11 @@ import {
                   }}>
                   Sign in
                 </Button>
+              </Stack>
+              <Stack pt={6}>
+                <Text align={'center'} color={'blue.400'}>
+                  <Link to={`/singUp`} >Create new account</Link>
+                </Text>
               </Stack>
             </Stack>
           </Box>

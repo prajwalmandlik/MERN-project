@@ -1,7 +1,6 @@
 import {
   Button,
   Container,
-  Divider,
   Heading,
   HStack,
   Img,
@@ -24,17 +23,16 @@ const SchemeDetails = () => {
 
       <VStack
         maxW={["auto", "1080px"]}
-        margin={["0 auto 4rem auto","0 auto 4rem auto"]}
+        margin={["0 auto 4rem auto", "0 auto 4rem auto"]}
         gap={"1rem"}
         alignItems={"flex-start"}
         p={["0 1rem", "0 2rem"]}
-        
       >
         {/* scheme title and logo */}
         <HStack
           justifyContent={"flex-start"}
           alignItems={"center"}
-          p={["1rem 0","2rem 0"]}
+          p={["1rem 0", "2rem 0"]}
         >
           {" "}
           <Img src={schemeData.img} w={["0px", "100px"]} />
@@ -79,7 +77,7 @@ const SchemeDetails = () => {
             {schemeData.steps.map((e, index) => {
               return (
                 <Text>
-                  <strong>Step {index}: </strong>
+                  <strong>Step {index + 1}: </strong>
                   <spam>{e}</spam>
                 </Text>
               );
@@ -88,9 +86,10 @@ const SchemeDetails = () => {
         </Container>
 
         <Text fontWeight="bold">Note - {schemeData.note}</Text>
+        <a href={schemeData.link}>
         <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
           Apply Now
-        </Button>
+        </Button></a>
       </VStack>
     </>
   );

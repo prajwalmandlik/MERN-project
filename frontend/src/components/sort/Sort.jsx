@@ -1,45 +1,55 @@
 import React from "react";
 import {
   Button,
-  Checkbox,
-  Divider,
-  Drawer,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
+  // Checkbox,
+  // Divider,
+  // Drawer,
+  // DrawerCloseButton,
+  // DrawerContent,
+  // DrawerHeader,
+  // DrawerOverlay,
   HStack,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  useDisclosure,
-  VStack,
+  // Menu,
+  // MenuButton,
+  // MenuItem,
+  // MenuList,
+  // Tab,
+  // TabList,
+  // TabPanel,
+  // TabPanels,
+  // Tabs,
+  // useDisclosure,
+  // VStack,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+// import { ChevronDownIcon } from "@chakra-ui/icons";
 import "./sort.scss";
 
 const Sort = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const filters = [
+    "All",
+    "Female",
+    "Farmer",
+    "Education",
+    "Senior Citizen",
+    "Kids",
+    "Employee",
+  ];
 
   return (
     <>
       <HStack
-        maxW={"1080px"}
+        maxW={["auto","auto","auto","1080px"]}
         m={"0 auto"}
         bgColor="lightblue"
         p={"2rem"}
         borderRadius={"10px"}
         align={"center"}
-        wrap="wrap"
+        wrap="nowrap"
         gap={"1rem"}
+        overflowX={"scroll"}
       >
-        <HStack gap={"1rem"}>
+        {/* <HStack gap={"1rem"}>
           <Menu>
             <MenuButton
               as={Button}
@@ -58,13 +68,14 @@ const Sort = () => {
           </Menu>
         </HStack>
         <HStack gap={"1rem"} >
+          <Button p={"0 2rem"} bgColor={"white"}>All</Button>
           <Button p={"0 2rem"} bgColor={"white"}>Women's</Button>
           <Button p={"0 2rem"} bgColor={"white"}>Education</Button>
           <Button p={"0 2rem"} bgColor={"white"}>Farmer</Button>
           <Button p={"0 2rem"} bgColor={"white"}>Health</Button>
           <Button p={"0 2rem"} bgColor={"white"}>Family</Button>
         </HStack>
-        {/* <HStack gap={"1rem"}>
+        <HStack gap={"1rem"}>
           <Button
             leftIcon={<i class="bx bx-filter"></i>}
             colorScheme="blue"
@@ -74,8 +85,11 @@ const Sort = () => {
           </Button>
           <Button>Apply</Button>
         </HStack> */}
+        {filters.map((e) => {
+          return <><Button w={"auto"} p={"1rem 2rem"} bgColor={"white"}>{e}</Button></>
+        })}
       </HStack>
-      <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"}>
+      {/* <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Fliter</DrawerHeader>
@@ -126,7 +140,7 @@ const Sort = () => {
             </TabPanels>
           </Tabs>
         </DrawerContent>
-      </Drawer>
+      </Drawer> */}
     </>
   );
 };
