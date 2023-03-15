@@ -11,11 +11,28 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { data } from "./Data";
 
 const MainSection = () => {
+  const [schemes, setSchemes] = useState([]);
+
+  const { setFilter } = useSelector((state) => state.custom);
+
+  useEffect(() => {
+    if (setFilter === "all") {
+      setSchemes(data);
+    } else {
+      const newSchemes = data.filter((scheme) => {
+        return scheme.category.toLowerCase() === setFilter;
+      });
+
+      setSchemes(newSchemes);
+    }
+  },[setFilter]);
+
   return (
     <>
       <HStack
@@ -26,7 +43,7 @@ const MainSection = () => {
         rowGap={"2rem"}
         p={"2rem 0"}
       >
-        {data.map((e, index) => {
+        {schemes.map((e, index) => {
           return (
             <Card maxW="md">
               <CardBody>

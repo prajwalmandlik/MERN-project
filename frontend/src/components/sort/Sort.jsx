@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 // import { ChevronDownIcon } from "@chakra-ui/icons";
 import "./sort.scss";
+import { useDispatch } from "react-redux";
 
 const Sort = () => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,10 +37,13 @@ const Sort = () => {
     "Employee",
   ];
 
+  const dispatch = useDispatch();
+
+
   return (
     <>
       <HStack
-        maxW={["auto","auto","auto","1080px"]}
+        maxW={["auto", "auto", "auto", "1080px"]}
         m={"0 auto"}
         bgColor="lightblue"
         p={"2rem"}
@@ -85,8 +89,24 @@ const Sort = () => {
           </Button>
           <Button>Apply</Button>
         </HStack> */}
-        {filters.map((e) => {
-          return <><Button w={"auto"} p={"1rem 2rem"} bgColor={"white"}>{e}</Button></>
+        {filters.map((element) => {
+          return (
+            <>
+              <Button
+                w={"auto"}
+                p={"1rem 2rem"}
+                bgColor={"white"}
+                onClick={() => {
+                  dispatch({
+                    type: "applyFilter",
+                    payload: element.toLocaleLowerCase(),
+                  });
+                }}
+              >
+                {element}
+              </Button>
+            </>
+          );
         })}
       </HStack>
       {/* <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"}>
