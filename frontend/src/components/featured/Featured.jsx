@@ -13,7 +13,7 @@ import "swiper/css";
 // import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-import { Autoplay,Navigation, EffectFade } from "swiper";
+import { Autoplay, EffectFade } from "swiper";
 
 export default function App() {
   return (
