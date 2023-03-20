@@ -21,6 +21,8 @@ import { Link as Li } from "react-router-dom";
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
 
+
+
   return (
     <Flex
       minH={"100vh"}
