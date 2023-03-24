@@ -1,12 +1,39 @@
 import React, { useState } from "react";
 import "./header.scss";
 import Img from "../../assets/logo.png";
-import { Button } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  HStack,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
-  const [mobileView, setMobileView] = useState(false);
+  /* ================ Change Background Header ===============*/
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector(".header-cantainer");
 
+    // when the scroll is higher than 200 viewport height,add the scroll-header class to a tag with the header calss
+    if (this.scrollY >= 80) header.classList.add("scroll-header");
+    else header.classList.remove("scroll-header");
+  });
+  
+  const [mobileView, setMobileView] = useState(false);
+  const { login, name } = useSelector((state) => state.user);
+  const userName = name.split(" ");
+  const dispatch = useDispatch();
+  const logOut = () =>{
+    dispatch({
+      type: "updateLogin",
+      payload: false,
+    });
+  }
   return (
     <div className="header-cantainer">
       <header
@@ -14,9 +41,9 @@ const Header = () => {
         className={mobileView ? "header active-nav" : "header"}
       >
         <div className="header-logo flex">
-          <Link to={`/`} >
-          <img src={Img} alt="" />
-          {/* <span>ADHIKAR</span> */}
+          <Link to={`/`}>
+            <img src={Img} alt="" />
+            {/* <span>ADHIKAR</span> */}
           </Link>
         </div>
 
@@ -32,16 +59,43 @@ const Header = () => {
 
         <nav className="navbar flex">
           <div className="login-btn">
-            <Link to={`/login`}>
-              <Button variant="solid" colorScheme="blue">
-                Sing In
-              </Button>
-            </Link>
+            {login ? (
+              <User name={userName[0]} nameLogo={name} logOut={logOut} />
+            ) : (
+              <>
+                <Link to={`/login`}>
+                  <Button variant="solid" colorScheme="blue">
+                    Sing In
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
     </div>
   );
 };
+
+const User = ({ name, nameLogo,logOut}) => (
+  <>
+    <Menu>
+      <MenuButton>
+        <HStack>
+          <Avatar size="sm" name={nameLogo} />
+          <Text>{name.toUpperCase()}</Text>
+        </HStack>
+      </MenuButton>
+      <MenuList m={"0 2rem"} minW={"3rem"}>
+        <MenuItem>Profile</MenuItem>
+        <MenuItem
+          onClick={logOut}
+        >
+          Log out
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  </>
+);
 
 export default Header;

@@ -17,7 +17,7 @@ import { Autoplay, EffectFade } from "swiper";
 
 export default function App() {
   return (
-    <>
+    <div className="featured">
       <Swiper
       centeredSlides={true}
       autoplay={{
@@ -50,6 +50,6 @@ export default function App() {
           <img src={Img6} alt="img" />
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 }

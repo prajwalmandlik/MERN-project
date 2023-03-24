@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { customeReducer } from "./Reducers";
+import { filterReducer } from "./filter";
+import { userReducer } from "./user";
 
 const store = configureStore({
     reducer: {
-        custom: customeReducer,
+        filter: filterReducer,
+        user: userReducer
     },
 });
 

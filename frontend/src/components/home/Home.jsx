@@ -7,14 +7,14 @@ import MainSection from "../mainSection/MainSection";
 
 const Home = () => {
   return (
-    <>
+    <div className="main">
       <Featured />
       <Alerts />
       <div className="main-section">
         <Sort />
         <MainSection />
       </div>
-    </>
+    </div>
   );
 };
 

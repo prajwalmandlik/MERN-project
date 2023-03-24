@@ -46,7 +46,7 @@ auth.post('/createuser', [
         const authToken = jwt.sign(data, JWT_SECRET)
         // console.log(jwtData);
 
-        res.json({ authToken })
+        res.json({success:true, authToken })
     } catch (error) {
         console.log(error.message)
         res.status(500).send("Internal Server Error")
@@ -64,7 +64,7 @@ auth.post('/login', [
     //if there are errors , return bad request adn the errors 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ errors: "Please try to login with correct credentials" });
     }
 
     const { email, password } = req.body;
@@ -86,7 +86,7 @@ auth.post('/login', [
         }
 
         const authToken = jwt.sign(data, JWT_SECRET)
-        res.json({ authToken })
+        res.json({ success:true ,authToken })
     } catch (error) {
         console.log(error.message)
         res.status(500).send("Internal Server Error")

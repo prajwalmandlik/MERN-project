@@ -4,8 +4,7 @@ const filter = {
     setFilter : "all"
 }
 
-
-export const customeReducer = createReducer(filter , {
+export const filterReducer = createReducer(filter , {
     applyFilter : (state , action) => {
       state.setFilter = action.payload
     },

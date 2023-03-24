@@ -1,6 +1,14 @@
 .header-cantainer{
-  background-color:rgba(173, 216, 230, 0.1) ;
+  background-color:rgba(173, 216, 230, 0.1);
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 }
+
+.scroll-header{
+  background-color: rgb(231, 249, 255);
+}
+
 .header {
   max-width: 1080px;
   margin: auto;
@@ -44,6 +52,10 @@
 .navbar {
   justify-content: end;
   gap: 1rem;
+}
+
+.login-btn{
+  overflow: visible;
 }
 
 /* ================ BREAKPOINS ===============*/

@@ -19,7 +19,7 @@ import { data } from "./Data";
 const MainSection = () => {
   const [schemes, setSchemes] = useState([]);
 
-  const { setFilter } = useSelector((state) => state.custom);
+  const { setFilter } = useSelector((state) => state.filter);
 
   useEffect(() => {
     if (setFilter === "all") {
