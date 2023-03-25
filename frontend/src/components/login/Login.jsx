@@ -11,8 +11,11 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  InputRightElement,
+  InputGroup,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useRef, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link as Li, useNavigate } from "react-router-dom";
@@ -21,9 +24,10 @@ import { server } from "../..";
 export default function Login() {
   const form = useRef();
   const navigate = useNavigate();
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
-
+  /* ================ Login user  ===============*/
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,30 +35,34 @@ const dispatch = useDispatch()
       email: form.current.email.value,
       password: form.current.password.value,
     };
-    console.log(data);
     try {
-      const response = await fetch(`${server}/api/auth/login`, {
+      const response = await fetch(`${server}/api/v1/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-      const json = await response.json();
-      if (json.success) {
-        await toast.success("Account created");
+      const Data = await response.json();
+      if (Data.success) {
+        await toast.success("user Login");
         // save the auth token and redirect to login page
+        const {success} = Data
         dispatch({
           type: "updateLogin",
-          payload: true,
+          payload: success,
         });
-        localStorage.setItem("token", json.authtoken);
+        // update user details
+
+        // dispatch({
+        //   type: "updateUserData",
+        //   payload: userData,
+        // });
         
         navigate("/");
       } else {
-
-        console.log(json);
-        toast.error(json.error);
+        console.log(Data);
+        toast.error(Data.error);
       }
     } catch (error) {
       console.log(error.message);
@@ -86,7 +94,22 @@ const dispatch = useDispatch()
               </FormControl>
               <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" name="password" id="password" />
+                <InputGroup>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                  />
+                  <InputRightElement h={"full"}>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }
+                    >
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
               </FormControl>
               <Stack spacing={10}>
                 <Stack

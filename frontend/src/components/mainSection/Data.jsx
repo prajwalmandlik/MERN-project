@@ -48,7 +48,7 @@ export const data = [
     eligibility: "",
     requiredDocuments: "",
     flare:
-      "https://d2w7l1p59qkl0r.cloudfront.net/static/Files/banner/Website-banner-hdfc_rFmCRV.webp",
+      "https://d2w7l1p59qkl0r.cloudfront.net/static/Files/banner/Website-banner-sbi-foundation_cpqDme.webp",
     link: "https://setu.pmjay.gov.in/setu/",
     img: "https://th.bing.com/th/id/R.823c8c96913e08549ac510ce540ba2da?rik=yLnIgw%2bDaDs0rQ&riu=http%3a%2f%2fegov.eletsonline.com%2fwp-content%2fuploads%2f2015%2f09%2fWebsite_Logo.png&ehk=G5t2Sv6G7OuIridiCKt%2bNnf8sJ9cor2BXlD4eBYZEzo%3d&risl=&pid=ImgRaw&r=0",
   },
@@ -59,6 +59,8 @@ export const data = [
     department: "",
     category: "Farmer",
     eligibility: "",
+    flare:
+      "https://d2w7l1p59qkl0r.cloudfront.net/static/Files/banner/Website-banner-colgate-banner_RBvlG4.webp",
     requiredDocuments: "",
     link: "https://setu.pmjay.gov.in/setu/",
     img: "https://gudstory.s3.us-east-2.amazonaws.com/wp-content/uploads/2018/12/06202955/Pradhan-Mantri-Awas-Yojana.jpg",
@@ -70,6 +72,8 @@ export const data = [
     department: "",
     category: "Employee",
     eligibility: "",
+    flare:
+      "https://d2w7l1p59qkl0r.cloudfront.net/static/scholarships/banners/document_1675084417.jpg",
     requiredDocuments: "",
     link: "https://setu.pmjay.gov.in/setu/",
     img: "https://www.ssbcrack.com/wp-content/uploads/2016/05/download-1.png",
@@ -81,6 +85,8 @@ export const data = [
     department: "",
     category: "Senior Citizen",
     eligibility: "",
+    flare:
+      "https://d2w7l1p59qkl0r.cloudfront.net/static/scholarships/banners/document_1675084417.jpg",
     requiredDocuments: "",
     link: "https://setu.pmjay.gov.in/setu/",
     img: "https://th.bing.com/th/id/OIP.fj-VsdrRpZpCNuTHIdSj0QHaEB?pid=ImgDet&rs=1",
@@ -91,6 +97,9 @@ export const data = [
     desc: "Pradhan Mantri Shram Yogi Maandhan is a government scheme meant for old age protection and social security of Unorganized workers",
     department: "",
     category: "Kids",
+    flare:
+      "https://d2w7l1p59qkl0r.cloudfront.net/static/Files/banner/Website-banner-hdfc_rFmCRV.webp",
+
     eligibility: "",
     requiredDocuments: "",
     link: "https://setu.pmjay.gov.in/setu/",

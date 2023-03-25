@@ -19,7 +19,7 @@ const SchemeDetails = () => {
   return (
     <>
       {/* scheme flare */}
-      <Img src={schemeData.flare} w="100%" h="100%" />
+      <Img src={schemeData.flare} w="100%" h="100%" paddingTop={"60px"}/>
 
       <VStack
         maxW={["auto", "1080px"]}

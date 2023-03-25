@@ -48,10 +48,10 @@ const MainSection = () => {
             <Card maxW="md">
               <CardBody>
                 <Image
-                  src={e.img}
+                  src={e.flare}
                   alt={e.name}
                   borderRadius="lg"
-                  w={"156px"}
+                  w={"auto"}
                   h={"156px"}
                   m={"auto"}
                 />

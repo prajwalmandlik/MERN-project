@@ -25,6 +25,8 @@ export default function SignUp() {
   const form = useRef();
   let navigate = useNavigate();
 
+
+  /* ================ create user ===============*/
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,7 +36,7 @@ export default function SignUp() {
       password: form.current.password.value,
     };
     try {
-      const response = await fetch(`${server}/api/auth/createuser`, {
+      const response = await fetch(`${server}/api/v1/users/new`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,8 +46,7 @@ export default function SignUp() {
       const json = await response.json();
       if (json.success) {
         await toast.success("Account created");
-        // save the auth token and redirect to login page
-        localStorage.setItem("token", json.authtoken);
+        // redirect to login page
         navigate("/login");
       } else {
         console.log(json);

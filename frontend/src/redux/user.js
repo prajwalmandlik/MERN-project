@@ -1,17 +1,20 @@
 import { createReducer } from "@reduxjs/toolkit"
 
 const user = {
-    login : false,
-    name: "prajwal mandlik",
+  login: false,
+  userData: {
+    name: "",
+    email: ""
   }
+}
 
 
-  export const userReducer = createReducer(user ,{
-    updateLogin : (state , action) => {
-        state.login = action.payload
-      },
-      
-    updateName : (state , action) => {
-        state.name = action.payload
-      },
-  })
+export const userReducer = createReducer(user, {
+  updateLogin: (state, action) => {
+    state.login = action.payload
+  },
+  
+  updateUserData: (state, action) => {
+    state.userData = action.payload
+  },
+})

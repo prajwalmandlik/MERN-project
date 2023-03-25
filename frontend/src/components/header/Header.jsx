@@ -15,6 +15,15 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
+  const [mobileView, setMobileView] = useState(false);
+  const { login} = useSelector((state) => state.user);
+  const { userData } = useSelector((state) => state.user)
+  const { name } = userData;
+
+  const userName = name.split(" ");
+  const dispatch = useDispatch();
+
+
   /* ================ Change Background Header ===============*/
   window.addEventListener("scroll", function () {
     const header = document.querySelector(".header-cantainer");
@@ -24,14 +33,16 @@ const Header = () => {
     else header.classList.remove("scroll-header");
   });
   
-  const [mobileView, setMobileView] = useState(false);
-  const { login, name } = useSelector((state) => state.user);
-  const userName = name.split(" ");
-  const dispatch = useDispatch();
+  
   const logOut = () =>{
     dispatch({
       type: "updateLogin",
       payload: false,
+    });
+
+    dispatch({
+      type: "updateUserData",
+      payload: {name:"" ,email:""},
     });
   }
   return (
