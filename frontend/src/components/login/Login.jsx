@@ -137,8 +137,8 @@ export default function Login() {
                   <Stack pt={3}>
                     <Text align={"center"}>
                       Dont have account?{" "}
-                      <Li to="/singUp">
-                        <Link color={"blue.400"}>SingUp</Link>
+                      <Li to="/signUp">
+                        <Link color={"blue.400"}>SignUp</Link>
                       </Li>
                     </Text>
                   </Stack>

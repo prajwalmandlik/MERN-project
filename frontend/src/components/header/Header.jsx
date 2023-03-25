@@ -76,7 +76,7 @@ const Header = () => {
               <>
                 <Link to={`/login`}>
                   <Button variant="solid" colorScheme="blue">
-                    Sing In
+                    Sign In
                   </Button>
                 </Link>
               </>
