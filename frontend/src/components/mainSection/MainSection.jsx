@@ -52,14 +52,14 @@ const MainSection = () => {
                   alt={e.name}
                   borderRadius="lg"
                   w={"auto"}
-                  h={"156px"}
+                  h={["auto","156px"]}
                   m={"auto"}
                 />
                 <Stack mt="6" spacing="3">
                   <Heading size="md" noOfLines={1}>
-                    {e.name}
+                    {e.title}
                   </Heading>
-                  <Text noOfLines={3}>{e.desc}</Text>
+                  <Text noOfLines={3}>{e.description}</Text>
                 </Stack>
               </CardBody>
               <Divider />

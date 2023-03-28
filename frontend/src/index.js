@@ -18,4 +18,4 @@ root.render(
 );
 
 
-export const server = "http://localhost:5000"
+export const server = "http://localhost:4000/api/v1"

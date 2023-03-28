@@ -39,19 +39,14 @@ const Sort = () => {
 
   const dispatch = useDispatch();
 
-
   return (
     <>
       <HStack
         maxW={["auto", "auto", "auto", "1080px"]}
         m={"0 auto"}
         bgColor="lightblue"
-        p={"2rem"}
+        p={"1rem 2rem .4rem 2rem"}
         borderRadius={"10px"}
-        align={"center"}
-        wrap="nowrap"
-        gap={"1rem"}
-        overflowX={"scroll"}
       >
         {/* <HStack gap={"1rem"}>
           <Menu>
@@ -89,25 +84,33 @@ const Sort = () => {
           </Button>
           <Button>Apply</Button>
         </HStack> */}
-        {filters.map((element) => {
-          return (
-            <>
-              <Button
-                w={"auto"}
-                p={"1rem 2rem"}
-                bgColor={"white"}
-                onClick={() => {
-                  dispatch({
-                    type: "applyFilter",
-                    payload: element.toLocaleLowerCase(),
-                  });
-                }}
-              >
-                {element}
-              </Button>
-            </>
-          );
-        })}
+        <HStack
+          align={"center"}
+          wrap="nowrap"
+          gap={"1rem"}
+          overflowX={"scroll"}
+          className={"sort"}
+        >
+          {filters.map((element) => {
+            return (
+              <>
+                <Button
+                  minW={"7rem"}
+                  p={"1rem 2rem"}
+                  bgColor={"white"}
+                  onClick={() => {
+                    dispatch({
+                      type: "applyFilter",
+                      payload: element.toLocaleLowerCase(),
+                    });
+                  }}
+                >
+                  {element}
+                </Button>
+              </>
+            );
+          })}
+        </HStack>
       </HStack>
       {/* <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={"md"}>
         <DrawerOverlay />

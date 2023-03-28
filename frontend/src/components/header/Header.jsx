@@ -13,6 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { server } from "../..";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
@@ -34,16 +37,25 @@ const Header = () => {
   });
   
   
-  const logOut = () =>{
-    dispatch({
-      type: "updateLogin",
-      payload: false,
-    });
+  const logOut = async() =>{
+    try {
+      await axios.get(`${server}/users/logout`, {
+        withCredentials: true,
+      });
 
-    dispatch({
-      type: "updateUserData",
-      payload: {name:"" ,email:""},
-    });
+      toast.success("Logged Out Successfully");
+      dispatch({
+        type: "updateLogin",
+        payload: false,
+      });
+  
+      dispatch({
+        type: "updateUserData",
+        payload: {name:"" ,email:""},
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   }
   return (
     <div className="header-cantainer">

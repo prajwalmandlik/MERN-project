@@ -1,8 +1,8 @@
 export const data = [
   {
     id: 0,
-    name: "Centrally Sponsored Pre Matric Scholarship Scheme for SC Students, Jammu and Kashmir 2022",
-    desc: "Centrally Sponsored Pre Matric Scholarship Scheme for SC Students, Jammu and Kashmir 2022 is an initiative of the Department of Social Justice & Empowerment, Government of India for students from Class 1 to 10. The objective of this scheme is to support the education of SC students to eliminate the incidence of dropout, especially during the transition from elementary to the secondary stage. The selected students will receive an academic allowance and other benefits.",
+    title: "Centrally Sponsored Pre Matric Scholarship Scheme for SC Students, Jammu and Kashmir 2022",
+    description: "Centrally Sponsored Pre Matric Scholarship Scheme for SC Students, Jammu and Kashmir 2022 is an initiative of the Department of Social Justice & Empowerment, Government of India for students from Class 1 to 10. The objective of this scheme is to support the education of SC students to eliminate the incidence of dropout, especially during the transition from elementary to the secondary stage. The selected students will receive an academic allowance and other benefits.",
     department: "",
     category: "Education",
     eligibility: [
@@ -41,8 +41,8 @@ export const data = [
   },
   {
     id: 1,
-    name: "Pradhan Mantri Jan Arogya Yojana (PM JAY)",
-    desc: "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana is a national public health insurance fund of the Government of India that aims to provide free access to health insurance coverage for low income earners in the country. Roughly, the bottom 50% of the count ry qualifies for this scheme",
+    title: "Pradhan Mantri Jan Arogya Yojana (PM JAY)",
+    description: "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana is a national public health insurance fund of the Government of India that aims to provide free access to health insurance coverage for low income earners in the country. Roughly, the bottom 50% of the count ry qualifies for this scheme",
     department: "",
     category: "Female",
     eligibility: "",
@@ -54,8 +54,8 @@ export const data = [
   },
   {
     id: 2,
-    name: "Pradhan Mantri Awas Yojana (Urban) PMAY (U)",
-    desc: "Pradhan Mantri Awas Yojana (Urban) Mission launched on 25th June 2015 which intends to provide housing for all in urban areas by year 2022. The Mission provides Central Assistance to the implementing agencies through States/Union Territories (UTs)",
+    title: "Pradhan Mantri Awas Yojana (Urban) PMAY (U)",
+    description: "Pradhan Mantri Awas Yojana (Urban) Mission launched on 25th June 2015 which intends to provide housing for all in urban areas by year 2022. The Mission provides Central Assistance to the implementing agencies through States/Union Territories (UTs)",
     department: "",
     category: "Farmer",
     eligibility: "",
@@ -67,8 +67,8 @@ export const data = [
   },
   {
     id: 3,
-    name: "Atal pension y ojana",
-    desc: "A defined pen sion system for the poor and under privileged depending on t he contribution made by su bscriber a nd its period.",
+    title: "Atal pension y ojana",
+    description: "A defined pen sion system for the poor and under privileged depending on t he contribution made by su bscriber a nd its period.",
     department: "",
     category: "Employee",
     eligibility: "",
@@ -80,8 +80,8 @@ export const data = [
   },
   {
     id: 4,
-    name: "Financial Assi stance for class 1 st to 10 th",
-    desc: "Educat ional Assi stance of Rs 2500 to the children studying in 1 st to 7 th std. and Rs 5000 for the children stud ying in 8 th std. ti 10 th of the regist ered wor ker.",
+    title: "Financial Assi stance for class 1 st to 10 th",
+    description: "Educat ional Assi stance of Rs 2500 to the children studying in 1 st to 7 th std. and Rs 5000 for the children stud ying in 8 th std. ti 10 th of the regist ered wor ker.",
     department: "",
     category: "Senior Citizen",
     eligibility: "",
@@ -93,8 +93,8 @@ export const data = [
   },
   {
     id: 5,
-    name: "Pradhan Mantri Jan Arogya Yojana (PM JAY)",
-    desc: "Pradhan Mantri Shram Yogi Maandhan is a government scheme meant for old age protection and social security of Unorganized workers",
+    title: "Pradhan Mantri Jan Arogya Yojana (PM JAY)",
+    description: "Pradhan Mantri Shram Yogi Maandhan is a government scheme meant for old age protection and social security of Unorganized workers",
     department: "",
     category: "Kids",
     flare:

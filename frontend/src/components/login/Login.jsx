@@ -10,23 +10,21 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
   InputRightElement,
   InputGroup,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { Link as Li, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link as Li, Navigate } from "react-router-dom";
 import { server } from "../..";
 
 export default function Login() {
   const form = useRef();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
+  const { login } = useSelector((state) => state.user);
   /* ================ Login user  ===============*/
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,37 +34,33 @@ export default function Login() {
       password: form.current.password.value,
     };
     try {
-      const response = await fetch(`${server}/api/v1/users/login`, {
+      const response = await fetch(`${server}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(data),
       });
       const Data = await response.json();
       if (Data.success) {
         await toast.success("user Login");
         // save the auth token and redirect to login page
-        const {success} = Data
+        const { success } = Data;
         dispatch({
           type: "updateLogin",
           payload: success,
         });
-        // update user details
-
-        // dispatch({
-        //   type: "updateUserData",
-        //   payload: userData,
-        // });
-        
-        navigate("/");
       } else {
         console.log(Data);
-        toast.error(Data.error);
+        toast.error(Data.message);
       }
     } catch (error) {
       console.log(error.message);
     }
+  };
+  if (login) {
+    return <Navigate to={`/`} />;
   };
 
   return (
@@ -74,7 +68,7 @@ export default function Login() {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bg={"gray.50"}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
@@ -82,7 +76,7 @@ export default function Login() {
         </Stack>
         <Box
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
+          bg={"white"}
           boxShadow={"lg"}
           p={8}
         >

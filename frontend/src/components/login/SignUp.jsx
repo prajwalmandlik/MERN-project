@@ -11,20 +11,19 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
   Link,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link as Li, useNavigate } from "react-router-dom";
+import { Link as Li, Navigate } from "react-router-dom";
 import { server } from "../..";
 import { toast, Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const form = useRef();
-  let navigate = useNavigate();
-
+  const { login } = useSelector((state) => state.user);
 
   /* ================ create user ===============*/
   const handleSubmit = async (e) => {
@@ -36,7 +35,7 @@ export default function SignUp() {
       password: form.current.password.value,
     };
     try {
-      const response = await fetch(`${server}/api/v1/users/new`, {
+      const response = await fetch(`${server}/users/new`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,14 +46,17 @@ export default function SignUp() {
       if (json.success) {
         await toast.success("Account created");
         // redirect to login page
-        navigate("/login");
+        <Navigate to={`/login`} />
       } else {
         console.log(json);
-        toast.error(json.error);
+        toast.error(json.message);
       }
     } catch (error) {
       toast.error("some error occure try after some time");
     }
+  };
+  if (login) {
+    return <Navigate to={`/`} />;
   };
 
   return (
@@ -62,7 +64,7 @@ export default function SignUp() {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bg={"gray.50"}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
@@ -72,7 +74,7 @@ export default function SignUp() {
         </Stack>
         <Box
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
+          bg={"white"}
           boxShadow={"lg"}
           p={8}
         >
