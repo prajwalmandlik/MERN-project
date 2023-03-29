@@ -1,10 +1,11 @@
 import {
   Button,
   Container,
+  Divider,
   Heading,
-  HStack,
   Img,
   ListItem,
+  Stack,
   Text,
   UnorderedList,
   VStack,
@@ -29,29 +30,30 @@ const SchemeDetails = () => {
         p={["0 1rem", "0 2rem"]}
       >
         {/* scheme title and logo */}
-        <HStack
+        <Stack
           justifyContent={"flex-start"}
           alignItems={"center"}
           p={["1rem 0", "2rem 0"]}
+          direction={['column', 'row']}
         >
           {" "}
-          <Img src={schemeData.img} w={["0px", "100px"]} />
-          <Heading fontSize={["1.5rem", "1.5rem", "2rem", "2.3rem"]}>
-            {schemeData.name}
+          <Img src={schemeData.img} w={["100px", "100px"]}  />
+          <Heading fontSize={["1.5rem", "1.5rem", "2rem", "2.3rem"]} textAlign={["center", "start"]}>
+            {schemeData.title}
           </Heading>
-        </HStack>
+        </Stack>
         {/* About this program */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
             About the program
           </Heading>
-          <Text>{schemeData.desc}</Text>
+          <Text>{schemeData.description}</Text>
         </Container>
-
+        <Divider />
         {/* Scheme Eligibility */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
-            Eligibility
+          Eligibility Criteria
           </Heading>
           <UnorderedList>
             {schemeData.eligibility.map((e) => {
@@ -59,9 +61,10 @@ const SchemeDetails = () => {
             })}
           </UnorderedList>
         </Container>
+        <Divider />
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
-            Documents
+          Documents Required
           </Heading>
           <UnorderedList>
             {schemeData.requiredDocuments.map((e) => {
@@ -69,9 +72,10 @@ const SchemeDetails = () => {
             })}
           </UnorderedList>
         </Container>
+        <Divider />
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
-            How can you apply?
+          How to apply
           </Heading>
           <VStack alignItems={"flex-start"}>
             {schemeData.steps.map((e, index) => {
@@ -84,7 +88,7 @@ const SchemeDetails = () => {
             })}
           </VStack>
         </Container>
-
+        <Divider />
         <Text fontWeight="bold">Note - {schemeData.note}</Text>
         <a href={schemeData.link}>
         <Button variant="solid" colorScheme="blue" m={"0 1rem"}>

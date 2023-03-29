@@ -19,13 +19,12 @@ import { toast } from "react-hot-toast";
 
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
-  const { login} = useSelector((state) => state.user);
-  const { userData } = useSelector((state) => state.user)
+  const { login } = useSelector((state) => state.user);
+  const { userData } = useSelector((state) => state.user);
   const { name } = userData;
 
   const userName = name.split(" ");
   const dispatch = useDispatch();
-
 
   /* ================ Change Background Header ===============*/
   window.addEventListener("scroll", function () {
@@ -35,9 +34,8 @@ const Header = () => {
     if (this.scrollY >= 80) header.classList.add("scroll-header");
     else header.classList.remove("scroll-header");
   });
-  
-  
-  const logOut = async() =>{
+
+  const logOut = async () => {
     try {
       await axios.get(`${server}/users/logout`, {
         withCredentials: true,
@@ -48,15 +46,15 @@ const Header = () => {
         type: "updateLogin",
         payload: false,
       });
-  
+
       dispatch({
         type: "updateUserData",
-        payload: {name:"" ,email:""},
+        payload: { name: "", email: "" },
       });
     } catch (error) {
       toast.error(error.response.data.message);
     }
-  }
+  };
   return (
     <div className="header-cantainer">
       <header
@@ -100,7 +98,7 @@ const Header = () => {
   );
 };
 
-const User = ({ name, nameLogo,logOut}) => (
+const User = ({ name, nameLogo, logOut }) => (
   <>
     <Menu>
       <MenuButton>
@@ -110,12 +108,10 @@ const User = ({ name, nameLogo,logOut}) => (
         </HStack>
       </MenuButton>
       <MenuList m={"0 2rem"} minW={"3rem"}>
-        <MenuItem>Profile</MenuItem>
-        <MenuItem
-          onClick={logOut}
-        >
-          Log out
-        </MenuItem>
+        <Link to={`/profile`}>
+          <MenuItem>Profile</MenuItem>
+        </Link>
+        <MenuItem onClick={logOut}>Log out</MenuItem>
       </MenuList>
     </Menu>
   </>

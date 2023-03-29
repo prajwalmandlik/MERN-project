@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link as Li, Navigate } from "react-router-dom";
+import { Link as Li, Navigate as Nav, useNavigate } from "react-router-dom";
 import { server } from "../..";
 import { toast, Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -24,6 +24,7 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const form = useRef();
   const { login } = useSelector((state) => state.user);
+  let navigate = useNavigate();
 
   /* ================ create user ===============*/
   const handleSubmit = async (e) => {
@@ -44,9 +45,8 @@ export default function SignUp() {
       });
       const json = await response.json();
       if (json.success) {
-        await toast.success("Account created");
-        // redirect to login page
-        <Navigate to={`/login`} />
+        toast.success("Account created");
+        navigate(`/login`)
       } else {
         console.log(json);
         toast.error(json.message);
@@ -55,29 +55,25 @@ export default function SignUp() {
       toast.error("some error occure try after some time");
     }
   };
+
+  // redirect to login page after singup 
+ 
+
+  // redirect to home page if users is loged in
   if (login) {
-    return <Navigate to={`/`} />;
-  };
+    return <Nav to={`/`} />;
+  }
+  
 
   return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={"gray.50"}
-    >
+    <Flex minH={"100vh"} align={"center"} justify={"center"} bg={"gray.50"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Sign up
           </Heading>
         </Stack>
-        <Box
-          rounded={"lg"}
-          bg={"white"}
-          boxShadow={"lg"}
-          p={8}
-        >
+        <Box rounded={"lg"} bg={"white"} boxShadow={"lg"} p={8}>
           <form onSubmit={handleSubmit} ref={form}>
             <Stack spacing={4}>
               <HStack>

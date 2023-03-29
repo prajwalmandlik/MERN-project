@@ -11,7 +11,8 @@ import SchemeDetails from "./components/schemeDetails/SchemeDetails";
 import { server } from ".";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import Cookies from "js-cookie";
+import Profile from "./components/profile/Profile";
+// import Cookies from "js-cookie";
 
 
 function App() {
@@ -32,9 +33,6 @@ function App() {
 
 
   useEffect(() => {
-    const token =  Cookies.get('token');
-    console.log(token);
-
     axios
       .get(`${server}/users/me`, {
         withCredentials: true,
@@ -47,7 +45,6 @@ function App() {
         const userData = { name: "", email: "" }
         updateUser(false, userData);
       });
-
   },[login])
 
   return (
@@ -60,6 +57,7 @@ function App() {
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/details/:id" element={<SchemeDetails />} />
+          <Route path="/profile" element={ <Profile /> } />
         </Routes>
         <Footer />
       </Router>

@@ -6,20 +6,39 @@ import {
   CardFooter,
   Divider,
   Heading,
-  HStack,
   Image,
+  SimpleGrid,
   Stack,
   Text,
 } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { server } from "../..";
 import { data } from "./Data";
 
 const MainSection = () => {
   const [schemes, setSchemes] = useState([]);
 
   const { setFilter } = useSelector((state) => state.filter);
+
+
+
+  useEffect(() => {
+      axios
+      .get(`${server}/scheme/getAll`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const userData = res.data.schemes;
+        console.log(userData)
+        setSchemes(userData)
+      })
+      .catch((error) => {
+        console.log(error) 
+      });
+  },[]);
 
   useEffect(() => {
     if (setFilter === "all") {
@@ -35,17 +54,16 @@ const MainSection = () => {
 
   return (
     <>
-      <HStack
-        m={["1rem", "2rem", "2rem", "auto"]}
-        maxW={"1080px"}
-        wrap={"wrap"}
-        justifyContent={"space-evenly"}
-        rowGap={"2rem"}
+      <SimpleGrid
+      columns={[1, 1, 2, 2, 2]} spacing='10'
+        m={[0, 0, 0, "auto"]}
+        maxW={["auto","auto","auto", "1080px"]}
         p={"2rem 0"}
+        placeItems={"center"}
       >
         {schemes.map((e, index) => {
           return (
-            <Card maxW="md">
+            <Card maxW={["md","lg","md","lg","lg",]}>
               <CardBody>
                 <Image
                   src={e.flare}
@@ -53,7 +71,7 @@ const MainSection = () => {
                   borderRadius="lg"
                   w={"auto"}
                   h={["auto","156px"]}
-                  m={"auto"}
+                  m={[ "auto"]}
                 />
                 <Stack mt="6" spacing="3">
                   <Heading size="md" noOfLines={1}>
@@ -80,7 +98,7 @@ const MainSection = () => {
             </Card>
           );
         })}
-      </HStack>
+      </SimpleGrid>
     </>
   );
 };
