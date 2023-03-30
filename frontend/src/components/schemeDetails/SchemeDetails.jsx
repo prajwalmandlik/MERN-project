@@ -10,15 +10,39 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { server } from "../..";
 import { data } from "../mainSection/Data";
 
 const SchemeDetails = () => {
-  const param = useParams();
-  const schemeData = data[param.id];
+  const {id} = useParams();
+  const [schemeData, setSchemeData] = useState(data[0])
+
+useEffect( ()=>{
+  try {
+    
+    axios
+        .get(`${server}/scheme/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          const scheme = res.data.scheme;
+          setSchemeData(scheme)
+        })
+        .catch((error) => {
+          console.log(error) 
+        });
+  } catch (error) {
+    console.log(error.message)
+  }
+})
+
+
   return (
-    <>
+    <div id="schemeDetails">
       {/* scheme flare */}
       <Img src={schemeData.flare} w="100%" h="100%" paddingTop={"60px"}/>
 
@@ -95,7 +119,7 @@ const SchemeDetails = () => {
           Apply Now
         </Button></a>
       </VStack>
-    </>
+    </div>
   );
 };
 

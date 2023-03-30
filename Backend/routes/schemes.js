@@ -1,21 +1,23 @@
 import express from "express";
 import {
   deleteScheme,
-  getSchemes,
+  getAllSchemes,
+  getScheme,
   newScheme,
   updateScheme,
 } from "../controllers/schemes.js";
-import { isAuthenticated } from "../middlewares/auth.js";
+// import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
 router.post("/new", newScheme);
 
-router.get("/my", isAuthenticated, getSchemes);
+router.get("/getAll", getAllSchemes);
 
 router
   .route("/:id")
-  .put(isAuthenticated, updateScheme)
-  .delete(isAuthenticated, deleteScheme);
+  .get( getScheme )
+  .put( updateScheme)
+  .delete( deleteScheme);
 
 export default router;

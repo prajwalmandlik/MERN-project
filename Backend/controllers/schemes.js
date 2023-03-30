@@ -29,13 +29,28 @@ export const newScheme = async (req, res, next) => {
   }
 };
 
-export const getSchemes = async (req, res, next) => {
+export const getAllSchemes = async (req, res, next) => {
   try {
     const schemes = await Schemes.find();
 
     res.status(200).json({
       success: true,
       schemes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getScheme = async (req, res, next) => {
+  try {
+    const scheme = await Schemes.findById(req.params.id);
+
+    if (!scheme) return next(new ErrorHandler("Scheme not found", 404));
+
+    res.status(200).json({
+      success: true,
+      scheme,
     });
   } catch (error) {
     next(error);
