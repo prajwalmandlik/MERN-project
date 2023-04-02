@@ -12,15 +12,16 @@ import {
 } from "@chakra-ui/react";
 
 import React from "react";
-import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { Context } from "../main";
 
 const SchemeDetails = () => {
-  const { schemeData } = useSelector((state) => state.scheme);
+  const { schemeData } = useContext(Context);
 
   return (
-    <div className="scheme-details">
+    <div className="scheme-details scheme-section">
       {/* scheme flare */}
-      <Img src={schemeData.flare} w="100%" h="auto"/>
+      <Img src={schemeData.flare} w="100%" h="auto" />
 
       <VStack
         maxW={["auto", "1080px"]}
@@ -53,43 +54,38 @@ const SchemeDetails = () => {
           <Text>{schemeData.description}</Text>
         </Container>
         <Divider />
-        {/* Scheme Eligibility */}
+        {/* Scheme Eligibility Criteria */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
             Eligibility Criteria
           </Heading>
-          <UnorderedList>
-            {schemeData.eligibility.map((e) => {
-              return <ListItem>{e}</ListItem>;
-            })}
-          </UnorderedList>
+          <Text dangerouslySetInnerHTML={{__html : schemeData.eligibility}}  paddingLeft={"1rem"}/>
         </Container>
         <Divider />
+        {/* Scheme Benefits */}
+        <Container maxW={"1080px"}>
+          <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
+            Benefits
+          </Heading>
+          <Text dangerouslySetInnerHTML={{__html : schemeData.benefits}}  paddingLeft={"1rem"}/>
+        </Container>
+        <Divider />
+        {/* Scheme Documents Required */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
             Documents Required
           </Heading>
-          <UnorderedList>
-            {schemeData.requiredDocuments.map((e) => {
-              return <ListItem>{e}</ListItem>;
-            })}
-          </UnorderedList>
+         
+          <Text dangerouslySetInnerHTML={{__html : schemeData.requiredDocuments}}  paddingLeft={"1rem"}/>
         </Container>
         <Divider />
+        {/* Scheme steps */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
             How to apply
           </Heading>
-          <VStack alignItems={"flex-start"}>
-            {schemeData.steps.map((e, index) => {
-              return (
-                <Text>
-                  <strong>Step {index + 1}: </strong>
-                  <spam>{e}</spam>
-                </Text>
-              );
-            })}
-          </VStack>
+         
+          <Text dangerouslySetInnerHTML={{__html : schemeData.steps}}  paddingLeft={"1rem"}/>
         </Container>
         <Divider />
         <Text fontWeight="bold">Note - {schemeData.note}</Text>

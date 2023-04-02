@@ -8,15 +8,15 @@ export const newScheme = async (req, res, next) => {
     await Schemes.create({
       title,
       description,
-      department, 
-      category, 
-      eligibility, 
-      benefits, 
-      requiredDocuments, 
-      steps, 
-      flare, 
-      link, 
-      img, 
+      department,
+      category,
+      eligibility,
+      benefits,
+      requiredDocuments,
+      steps,
+      flare,
+      link,
+      img,
       note
     });
 
@@ -59,12 +59,30 @@ export const getScheme = async (req, res, next) => {
 
 export const updateScheme = async (req, res, next) => {
   try {
-    const task = await Schemes.findById(req.params.id);
+    const scheme = await Schemes.findById(req.params.id);
 
-    if (!task) return next(new ErrorHandler("Scheme not found", 404));
+    if (!scheme) return next(new ErrorHandler("Scheme not found", 404));
 
-    //write code to update 
-    await task.save();
+    const { title, description, department, category, eligibility, benefits, requiredDocuments, steps, flare, link, img, note } = req.body;
+    //code to update 
+    await scheme.updateOne({
+      $set: {
+        title,
+        description,
+        department,
+        category,
+        eligibility,
+        benefits,
+        requiredDocuments,
+        steps,
+        flare,
+        link,
+        img,
+        note
+      }
+    })
+
+    await scheme.save();
 
     res.status(200).json({
       success: true,

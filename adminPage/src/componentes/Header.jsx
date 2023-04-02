@@ -18,6 +18,7 @@ import {
   Image,
 } from '@chakra-ui/react';
 import Logo from "../assets/logo.png"
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
 
@@ -25,7 +26,7 @@ export default function Header() {
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={10} >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box> <Image src={Logo} w={"150px"} h={"auto"} /> </Box>
+          <Box><NavLink to={`/`}> <Image src={Logo} w={"150px"} h={"auto"} /> </NavLink></Box>
 
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>

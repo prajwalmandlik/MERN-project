@@ -4,10 +4,8 @@ import {
   Divider,
   Heading,
   Img,
-  ListItem,
   Stack,
   Text,
-  UnorderedList,
   VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -44,7 +42,7 @@ useEffect( ()=>{
   return (
     <div id="schemeDetails">
       {/* scheme flare */}
-      <Img src={schemeData.flare} w="100%" h="100%" paddingTop={"60px"}/>
+      <Img src={schemeData.flare} w="100%" h="auto"  paddingTop={"60px"}/>
 
       <VStack
         maxW={["auto", "1080px"]}
@@ -58,11 +56,14 @@ useEffect( ()=>{
           justifyContent={"flex-start"}
           alignItems={"center"}
           p={["1rem 0", "2rem 0"]}
-          direction={['column', 'row']}
+          direction={["column", "row"]}
         >
           {" "}
-          <Img src={schemeData.img} w={["100px", "100px"]}  />
-          <Heading fontSize={["1.5rem", "1.5rem", "2rem", "2.3rem"]} textAlign={["center", "start"]}>
+          <Img src={schemeData.img} w={["100px", "100px"]} />
+          <Heading
+            fontSize={["1.5rem", "1.5rem", "2rem", "2.3rem"]}
+            textAlign={["center", "start"]}
+          >
             {schemeData.title}
           </Heading>
         </Stack>
@@ -74,50 +75,46 @@ useEffect( ()=>{
           <Text>{schemeData.description}</Text>
         </Container>
         <Divider />
-        {/* Scheme Eligibility */}
+        {/* Scheme Eligibility Criteria */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
-          Eligibility Criteria
+            Eligibility Criteria
           </Heading>
-          <UnorderedList>
-            {schemeData.eligibility.map((e) => {
-              return <ListItem>{e}</ListItem>;
-            })}
-          </UnorderedList>
+          <Text dangerouslySetInnerHTML={{__html : schemeData.eligibility}}  paddingLeft={"1rem"}/>
         </Container>
         <Divider />
+        {/* Scheme Benefits */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
-          Documents Required
+            Benefits
           </Heading>
-          <UnorderedList>
-            {schemeData.requiredDocuments.map((e) => {
-              return <ListItem>{e}</ListItem>;
-            })}
-          </UnorderedList>
+          <Text dangerouslySetInnerHTML={{__html : schemeData.benefits}}  paddingLeft={"1rem"}/>
         </Container>
         <Divider />
+        {/* Scheme Documents Required */}
         <Container maxW={"1080px"}>
           <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
-          How to apply
+            Documents Required
           </Heading>
-          <VStack alignItems={"flex-start"}>
-            {schemeData.steps.map((e, index) => {
-              return (
-                <Text>
-                  <strong>Step {index + 1}: </strong>
-                  <spam>{e}</spam>
-                </Text>
-              );
-            })}
-          </VStack>
+         
+          <Text dangerouslySetInnerHTML={{__html : schemeData.requiredDocuments}}  paddingLeft={"1rem"}/>
+        </Container>
+        <Divider />
+        {/* Scheme steps */}
+        <Container maxW={"1080px"}>
+          <Heading fontSize={["1.5rem", "1.7rem"]} paddingBottom={"1rem"}>
+            How to apply
+          </Heading>
+         
+          <Text dangerouslySetInnerHTML={{__html : schemeData.steps}}  paddingLeft={"1rem"}/>
         </Container>
         <Divider />
         <Text fontWeight="bold">Note - {schemeData.note}</Text>
         <a href={schemeData.link}>
-        <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
-          Apply Now
-        </Button></a>
+          <Button variant="solid" colorScheme="blue" m={"0 1rem"}>
+            Apply Now
+          </Button>
+        </a>
       </VStack>
     </div>
   );

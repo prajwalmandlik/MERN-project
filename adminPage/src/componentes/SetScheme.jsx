@@ -1,23 +1,19 @@
 import { Grid } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { server } from "../main";
+import { Context, server } from "../main";
 import SchemeDetails from "./SchemeDetails";
 import SchemeForm from "./SchemeForm";
 
 const SetScheme = () => {
   const { id } = useParams();
 
-  const dispatch = useDispatch();
+  const {setSchemeData} = useContext(Context)
 
-  const setSchemeData = (scheme) => {
-    dispatch({
-      type: "updateScheme",
-      payload: scheme,
-    });
-  };
+  
 
   useEffect(() => {
     if (id !== "0") {
@@ -37,14 +33,14 @@ const SetScheme = () => {
         console.log(error.message);
       }
     }
-  });
+  },[]);
   return (
-    <>
-      <Grid templateColumns={["1fr","repeat(2, 1fr)"]}>
-        <SchemeForm />
+    <div className="bgColor">
+      <Grid templateColumns={["1fr","repeat(2, 1fr)"]} h={"91.5vh"} overflowY={"hidden"}>
+        <SchemeForm id={id} />
         <SchemeDetails />
       </Grid>
-    </>
+    </div>
   );
 };
 

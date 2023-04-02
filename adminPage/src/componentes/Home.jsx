@@ -1,4 +1,4 @@
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Button,
   ButtonGroup,
@@ -16,24 +16,36 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useContext } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { server } from "../main";
+import { Context, server } from "../main";
 import schema from "./schema";
 
 const Home = () => {
   const [schemes, setSchemes] = useState([]);
 
-  const dispatch = useDispatch();
-
-  const setSchemeData = (data) => {
-    dispatch({
-      type: "updateScheme",
-      payload: data,
-    });
-  };
+  const {setSchemeData} = useContext(Context)
 
   setSchemeData(schema);
+
+const deleteScheme = (id) => {
+  try {
+    axios
+      .delete(`${server}/scheme/${id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        toast.success("scheme deleted")
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
   useEffect(() => {
     axios
@@ -48,13 +60,13 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [deleteScheme]);
 
   return (
-    <div>
+    <div className="bgColor">
       <Grid
         templateColumns={["1fr", "1fr", "repeat(2, 1fr)"]}
-        spacing="10"
+        gap={5}
         m={[0, 0, 0, "auto"]}
         maxW={["auto", "auto", "auto", "1080px"]}
         p={"2rem 0"}
@@ -91,11 +103,11 @@ const Home = () => {
                 <CardFooter>
                   <ButtonGroup spacing="2">
                     <Link to={`/setScheme/${e._id}`}>
-                      <Button variant="solid" colorScheme="blue">
+                      <Button leftIcon={<EditIcon />} variant="solid" colorScheme="blue" >
                         Update
                       </Button>
                     </Link>
-                    <Button variant="outline" colorScheme="blue">
+                    <Button leftIcon={<DeleteIcon />} variant="outline" colorScheme="blue" onClick={() => {deleteScheme(e._id)}} >
                       Delete
                     </Button>
                   </ButtonGroup>
@@ -105,6 +117,7 @@ const Home = () => {
           );
         })}
       </Grid>
+      <Toaster />
     </div>
   );
 };
