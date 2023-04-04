@@ -35,7 +35,12 @@ img {
   display: none;
 }
 
-  
+.header-cantainer {
+  background-color: rgb(240, 251, 254);
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}
 
 /* ================ Layout ===============*/
 
@@ -48,14 +53,14 @@ img {
 // }
 
 /* ================ Reusable Class ===============*/
-.flex{
+.flex {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.button{
-  padding: .5rem 1.5rem;
+.button {
+  padding: 0.5rem 1.5rem;
   border-radius: 5px;
 }
 
@@ -69,7 +74,6 @@ img {
   //     "sort home"
   //     "footer footer";
   // }
- 
 }
 
 /* For medium devices */
@@ -82,11 +86,9 @@ img {
   //     "home"
   //     "footer";
   // }
- 
 }
 
 @media screen and (max-width: 576px) {
- 
 }
 
 /* For small devices */

@@ -1,11 +1,16 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-const filter = {
-    setFilter : "all"
+const setFilter = {
+    filter : "all",
+    search: "",
 }
 
-export const filterReducer = createReducer(filter , {
+export const filterReducer = createReducer(setFilter , {
     applyFilter : (state , action) => {
-      state.setFilter = action.payload
+      state.filter = action.payload
+    },
+
+    searchItem : (state , action) => {
+      state.search = action.payload
     },
 })

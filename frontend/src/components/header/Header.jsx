@@ -1,39 +1,40 @@
 import React, { useState } from "react";
-import "./header.scss";
-import Img from "../../assets/logo.png";
+// import "./header.scss";
+import Logo from "../../assets/logo.png";
 import {
   Avatar,
+  Box,
   Button,
+  Flex,
   HStack,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { server } from "../..";
 import { toast } from "react-hot-toast";
+import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
-  const [mobileView, setMobileView] = useState(false);
+  // const [mobileView, setMobileView] = useState(false);
   const { login } = useSelector((state) => state.user);
   const { userData } = useSelector((state) => state.user);
   const { name } = userData;
+  const [value, setValue] = useState("");
+  const navigate = useNavigate()
 
   const userName = name.split(" ");
   const dispatch = useDispatch();
-
-  /* ================ Change Background Header ===============*/
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector(".header-cantainer");
-
-    // when the scroll is higher than 200 viewport height,add the scroll-header class to a tag with the header calss
-    if (this.scrollY >= 80) header.classList.add("scroll-header");
-    else header.classList.remove("scroll-header");
-  });
 
   const logOut = async () => {
     try {
@@ -55,46 +56,93 @@ const Header = () => {
       toast.error(error.response.data.message);
     }
   };
+
+  const searchItem = (e) => {
+    e.preventDefault();
+
+    dispatch({
+      type: "searchItem",
+      payload: value,
+    });
+
+    dispatch({
+      type: "applyFilter",
+      payload: "all",
+    });
+
+    navigate("/")
+  };
+
   return (
     <div className="header-cantainer">
-      <header
-        id="header"
-        className={mobileView ? "header active-nav" : "header"}
-      >
-        <div className="header-logo flex">
-          <Link to={`/`}>
-            <img src={Img} alt="" />
-            {/* <span>ADHIKAR</span> */}
-          </Link>
-        </div>
+      <Box  px={[2, 2, 2, 10]}>
+        <HStack h={16} alignItems={"center"} justifyContent={"space-between"}>
+          <Box>
+            <NavLink to={`/`}>
+              {" "}
+              <Image src={Logo} w={"150px"} h={"auto"} />{" "}
+            </NavLink>
+          </Box>
 
-        <div className="search flex ">
-          <input type="search" className="search-bar" placeholder="Search" />
-          <i
-            class="bx bx-search"
-            onClick={() => {
-              setMobileView((oldstate) => !oldstate);
-            }}
-          ></i>
-        </div>
-
-        <nav className="navbar flex">
-          <div className="login-btn">
-            {login ? (
-              <User name={userName[0]} nameLogo={name} logOut={logOut} />
-            ) : (
-              <>
-                <Link to={`/login`}>
-                  <Button variant="solid" colorScheme="blue">
-                    Sign In
-                  </Button>
-                </Link>
-                
-              </>
-            )}
-          </div>
-        </nav>
-      </header>
+          <Box>
+            <HStack>
+              <Box>
+                <form onSubmit={searchItem}>
+                  <HStack gap={[0,0,0,"1rem"]}>
+                    <InputGroup>
+                      <Input
+                        type="text"
+                        placeholder="Search"
+                        value={value}
+                        onChange={(e) => {
+                          setValue(e.target.value);
+                        }}
+                      />
+                      <InputRightElement h={"full"}>
+                        <Button
+                          variant={"ghost"}
+                          onClick={() => {
+                            setValue("");
+                          }}
+                          _focus={{ bg: "inherit" }}
+                          _active={{ bg: "inherit" }}
+                          _hover={{ bg: "inherit" }}
+                          hidden={(value === '') ? true : false}
+                        >
+                          <CloseIcon fontSize={".8rem"} />
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                    <Button
+                      type={"submit"}
+                      bg={"inherit"}
+                      _focus={{ bg: "inherit" }}
+                      _active={{ bg: "inherit" }}
+                      _hover={{ bg: "inherit" }}
+                      px={[0,0,"1rem"]}
+                    >
+                      <SearchIcon />
+                    </Button>
+                  </HStack>
+                </form>
+              </Box>
+              <Box>
+                {login ? (
+                  <User name={userName[0]} nameLogo={name} logOut={logOut} />
+                ) : (
+                  <>
+                    <Link to={`/login`}>
+                      <Button variant="solid" colorScheme="blue">
+                        Sign In
+                      </Button>
+                    </Link>
+                  </>
+                )}
+              </Box>
+            </HStack>
+          </Box>
+        </HStack>
+      </Box>
     </div>
   );
 };

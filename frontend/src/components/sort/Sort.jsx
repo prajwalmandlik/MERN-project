@@ -103,6 +103,13 @@ const Sort = () => {
                       type: "applyFilter",
                       payload: element.toLocaleLowerCase(),
                     });
+
+                    if(element === "All"){
+                      dispatch({
+                        type: "searchItem",
+                        payload: "",
+                      });
+                    }
                   }}
                 >
                   {element}
