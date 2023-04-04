@@ -18,34 +18,44 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Context, server } from "../main";
 import schema from "./schema";
 
 const Home = () => {
   const [schemes, setSchemes] = useState([]);
 
-  const {setSchemeData} = useContext(Context)
+  const { setSchemeData, isAuthenticated } = useContext(Context);
+  const navigate = useNavigate();
 
   setSchemeData(schema);
-
-const deleteScheme = (id) => {
-  try {
-    axios
-      .delete(`${server}/scheme/${id}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res);
-        toast.success("scheme deleted")
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  } catch (error) {
-    console.log(error.message);
+  if(!isAuthenticated){
+    navigate("/login")
   }
-}
+
+
+  const deleteScheme = (id) => {
+    const conf = confirm("delete Scheme");
+
+    if (!conf) {
+      return 0;
+    }
+    try {
+      axios
+        .delete(`${server}/scheme/${id}`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success("scheme deleted");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -60,6 +70,9 @@ const deleteScheme = (id) => {
       .catch((error) => {
         console.log(error);
       });
+
+      
+
   }, [deleteScheme]);
 
   return (
@@ -103,11 +116,22 @@ const deleteScheme = (id) => {
                 <CardFooter>
                   <ButtonGroup spacing="2">
                     <Link to={`/setScheme/${e._id}`}>
-                      <Button leftIcon={<EditIcon />} variant="solid" colorScheme="blue" >
+                      <Button
+                        leftIcon={<EditIcon />}
+                        variant="solid"
+                        colorScheme="blue"
+                      >
                         Update
                       </Button>
                     </Link>
-                    <Button leftIcon={<DeleteIcon />} variant="outline" colorScheme="blue" onClick={() => {deleteScheme(e._id)}} >
+                    <Button
+                      leftIcon={<DeleteIcon />}
+                      variant="outline"
+                      colorScheme="blue"
+                      onClick={() => {
+                        deleteScheme(e._id);
+                      }}
+                    >
                       Delete
                     </Button>
                   </ButtonGroup>

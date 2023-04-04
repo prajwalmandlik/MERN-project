@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Context, server } from "../main";
 import SchemeDetails from "./SchemeDetails";
 import SchemeForm from "./SchemeForm";
@@ -11,9 +11,11 @@ import SchemeForm from "./SchemeForm";
 const SetScheme = () => {
   const { id } = useParams();
 
-  const {setSchemeData} = useContext(Context)
+  const {setSchemeData, isAuthenticated} = useContext(Context)
 
-  
+  if(!isAuthenticated){
+    return(<Navigate to={`/login`} />)
+  }
 
   useEffect(() => {
     if (id !== "0") {
@@ -34,6 +36,7 @@ const SetScheme = () => {
       }
     }
   },[]);
+
   return (
     <div className="bgColor">
       <Grid templateColumns={["1fr","repeat(2, 1fr)"]} h={"91.5vh"} overflowY={"hidden"}>

@@ -14,48 +14,55 @@ import {
     InputGroup,
   } from "@chakra-ui/react";
   import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-  import { useRef, useState } from "react";
+  import { useContext, useRef, useState } from "react";
   import { toast, Toaster } from "react-hot-toast";
   import { Link as Li, Navigate } from "react-router-dom";
-import { server } from "../main";
+import { Context, server } from "../main";
   
   export default function Login() {
     const form = useRef();
     const [showPassword, setShowPassword] = useState(false);
+    const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+
     /* ================ Login user  ===============*/
     const handleSubmit = async (e) => {
       e.preventDefault();
   
-      const data = {
-        email: form.current.email.value,
-        password: form.current.password.value,
-      };
-      try {
-        const response = await fetch(`${server}/users/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(data),
-        });
-        const Data = await response.json();
-        if (Data.success) {
-          await toast.success("user Login");
-          // save the auth token and redirect to login page
-          const { success } = Data;
-          
-        } else {
-          console.log(Data);
-          toast.error(Data.message);
-        }
-      } catch (error) {
-        console.log(error.message);
+      // const data = {
+        const username = form.current.email.value;
+        const userPassword = form.current.password.value;
+      // };
+
+      if(username === "adhikarAdmin" && userPassword === "pass123"){
+        setIsAuthenticated(true);
       }
+
+      // try {
+      //   const response = await fetch(`${server}/users/login`, {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     credentials: "include",
+      //     body: JSON.stringify(data),
+      //   });
+      //   const Data = await response.json();
+      //   if (Data.success) {
+      //     await toast.success("user Login");
+      //     // save the auth token and redirect to login page
+      //     const { success } = Data;
+          
+      //   } else {
+      //     console.log(Data);
+      //     toast.error(Data.message);
+      //   }
+      // } catch (error) {
+      //   console.log(error.message);
+      // }
     };
-    // if (login) {
-    //   return <Navigate to={`/`} />;
-    // };
+    if (isAuthenticated) {
+      return <Navigate to={`/`} />;
+    };
   
     return (
       <Flex
@@ -77,8 +84,8 @@ import { server } from "../main";
             <Stack spacing={4}>
               <form onSubmit={handleSubmit} ref={form}>
                 <FormControl>
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="email" name="email" id="email" />
+                  <FormLabel>Username</FormLabel>
+                  <Input type="text" name="email" id="email" />
                 </FormControl>
                 <FormControl>
                   <FormLabel>Password</FormLabel>

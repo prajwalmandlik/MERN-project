@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import {
   Box,
   Flex,
@@ -18,9 +17,14 @@ import {
   Image,
 } from '@chakra-ui/react';
 import Logo from "../assets/logo.png"
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
+import { Context } from '../main';
+import { useContext } from 'react';
 
 export default function Header() {
+
+  const {  setIsAuthenticated } = useContext(Context);
+
 
   return (
     <>
@@ -60,7 +64,7 @@ export default function Header() {
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem onClick={() => {setIsAuthenticated(false)}}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
