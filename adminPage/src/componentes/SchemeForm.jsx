@@ -4,10 +4,11 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Context, server } from "../main";
 import ReactQuill from "react-quill";
@@ -15,11 +16,15 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { async } from "@firebase/util";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../firebase/firebase";
+import { v4 } from "uuid";
 
 const SchemeForm = ({ id }) => {
   const { schemeData, setSchemeData } = useContext(Context);
-const navigate = useNavigate();
-
+  const [imageUpload, setImageUpload] = useState(null);
+  const navigate = useNavigate();
 
   let name, value;
   const updateData = (e) => {
@@ -30,6 +35,20 @@ const navigate = useNavigate();
 
   const updateEditorData = (data, ref) => {
     setSchemeData({ ...schemeData, [ref]: data });
+  };
+
+  const uploadImage = async () => {
+    if (imageUpload === null) {
+      toast.error("Select image");
+      return;
+    }
+    const imageRef = ref(storage, `flare/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      toast.success("image Upload");
+      getDownloadURL(imageRef).then((url) => {
+        setSchemeData({ ...schemeData, flare: url });
+      });
+    });
   };
 
   const modules = {
@@ -45,21 +64,21 @@ const navigate = useNavigate();
 
     try {
       if (id === "0") {
-      const { data } = await axios.post(
-        `${server}/scheme/new`,
-        {
-          ...schemeData,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
+        const { data } = await axios.post(
+          `${server}/scheme/new`,
+          {
+            ...schemeData,
           },
-          withCredentials: true,
-        }
-      );
-      toast.success(data.message);
-      navigate(`/`);
-      }else{
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        toast.success(data.message);
+        navigate(`/`);
+      } else {
         const { data } = await axios.put(
           `${server}/scheme/${id}`,
           {
@@ -72,7 +91,7 @@ const navigate = useNavigate();
             withCredentials: true,
           }
         );
-  
+
         toast.success(data.message);
         navigate(`/`);
       }
@@ -88,6 +107,24 @@ const navigate = useNavigate();
           <Stack spacing={"1rem"} py={10}>
             <FormControl>
               <FormLabel htmlFor="flare">Flare</FormLabel>
+              <InputGroup>
+                <Input
+                  type="file"
+                  name="flare"
+                  id="flare"
+                  // value={schemeData.flare}
+                  // onChange={updateData}
+                  onChange={(e) => {
+                    setImageUpload(e.target.files[0]);
+                  }}
+                />
+                <Button bg={"blackAlpha.100"} onClick={uploadImage}>
+                  Upload Image
+                </Button>
+              </InputGroup>
+            </FormControl>
+            {/* <FormControl>
+              <FormLabel htmlFor="flare">Flare</FormLabel>
               <Input
                 type="link"
                 name="flare"
@@ -96,7 +133,7 @@ const navigate = useNavigate();
                 onChange={updateData}
                 required
               />
-            </FormControl>
+            </FormControl> */}
             <FormControl>
               <FormLabel htmlFor="img">Logo</FormLabel>
               <Input
