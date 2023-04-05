@@ -1,6 +1,7 @@
 import express from "express";
 import userRouter from "./routes/user.js";
 import schemeRouter from "./routes/schemes.js";
+import adminRouter from "./routes/admin.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "./middlewares/error.js";
@@ -26,6 +27,7 @@ app.use(
 // Using routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/scheme", schemeRouter);
+app.use("/api/v1/admin", adminRouter);
 
 app.get("/", (req, res) => {
   res.send("Nice working");

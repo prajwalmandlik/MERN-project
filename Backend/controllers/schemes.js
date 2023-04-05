@@ -31,7 +31,7 @@ export const newScheme = async (req, res, next) => {
 
 export const getAllSchemes = async (req, res, next) => {
   try {
-    const schemes = await Schemes.find();
+    const schemes = await Schemes.find().select("_id title description flare link");
 
     res.status(200).json({
       success: true,
@@ -46,6 +46,51 @@ export const getScheme = async (req, res, next) => {
   try {
     const scheme = await Schemes.findById(req.params.id);
 
+    if (!scheme) return next(new ErrorHandler("Scheme not found", 404));
+
+    res.status(200).json({
+      success: true,
+      scheme,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getSchemeBySearch = async (req, res, next) => {
+  try {
+    const scheme = await Schemes.find(
+      {
+        "$or":[
+          {title:{$regex: req.params.key ,$options: "i"}},
+          {description:{$regex: req.params.key ,$options: "i"}},
+          {eligibility:{$regex: req.params.key ,$options: "i"}},
+          {category:{$regex: req.params.key ,$options: "i"}},
+        ]
+      }
+    ).select("_id title description flare link");
+
+    if (!scheme) return next(new ErrorHandler("Scheme not found", 404));
+
+    res.status(200).json({
+      success: true,
+      scheme,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getSchemeByFilter = async (req, res, next) => {
+  
+  try {
+    const scheme = await Schemes.find(
+      {
+        "$or":[
+          {category:{$regex: req.params.key}}
+        ]
+      }
+    ).select("_id title description flare link");
     if (!scheme) return next(new ErrorHandler("Scheme not found", 404));
 
     res.status(200).json({
