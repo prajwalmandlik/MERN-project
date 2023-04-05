@@ -8,11 +8,12 @@ import {
   newScheme,
   updateScheme,
 } from "../controllers/schemes.js";
+import { isAuthenticatedAdmin } from "../middlewares/auth.js";
 // import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post("/new", newScheme);
+router.post("/new",isAuthenticatedAdmin, newScheme);
 
 router.get("/getAll", getAllSchemes);
 
@@ -22,8 +23,8 @@ router.get("/filter/:key", getSchemeByFilter);
 
 router
   .route("/:id")
-  .get(getScheme)
-  .put(updateScheme)
-  .delete(deleteScheme);
+  .get(isAuthenticatedAdmin, getScheme)
+  .put(isAuthenticatedAdmin, updateScheme)
+  .delete(isAuthenticatedAdmin,deleteScheme);
 
 export default router;
