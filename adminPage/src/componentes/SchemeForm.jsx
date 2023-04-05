@@ -38,20 +38,6 @@ const SchemeForm = ({ id }) => {
     setSchemeData({ ...schemeData, [ref]: data });
   };
 
-  // const uploadFlare = async () => {
-  //   if (flareUpload === null) {
-  //     toast.error("Select image");
-  //     return;
-  //   }
-  //   const imageRef = ref(storage, `flare/${flareUpload.name + v4()}`);
-  //   uploadBytes(imageRef, flareUpload).then(() => {
-  //     toast.success("image Upload");
-  //     getDownloadURL(imageRef).then((url) => {
-  //       setSchemeData({ ...schemeData, flare: url });
-  //     });
-  //   });
-  // };
-
   const uploadImage = async (filedName, image) => {
     if (image === null) {
       toast.error("Select image");
@@ -120,17 +106,6 @@ const SchemeForm = ({ id }) => {
       <Container>
         <form onSubmit={handleSubmit}>
           <Stack spacing={"1rem"} py={10}>
-            {/* <FormControl>
-              <FormLabel htmlFor="img">Logo</FormLabel>
-              <Input
-                type="link"
-                name="img"
-                id="img"
-                value={schemeData.img}
-                onChange={updateData}
-                required
-              />
-            </FormControl> */}
             <FormControl>
               <FormLabel htmlFor="title">Title</FormLabel>
               <Input
@@ -165,7 +140,12 @@ const SchemeForm = ({ id }) => {
                     setFlareUpload(e.target.files[0]);
                   }}
                 />
-                <Button bg={"blackAlpha.100"} onClick={() => {uploadImage("flare", flareUpload)}}>
+                <Button
+                  bg={"blackAlpha.100"}
+                  onClick={() => {
+                    uploadImage("flare", flareUpload);
+                  }}
+                >
                   Upload Image
                 </Button>
               </InputGroup>
@@ -183,7 +163,12 @@ const SchemeForm = ({ id }) => {
                     setLogoUpload(e.target.files[0]);
                   }}
                 />
-                <Button bg={"blackAlpha.100"} onClick={() => {uploadImage("img", logoUpload)}}>
+                <Button
+                  bg={"blackAlpha.100"}
+                  onClick={() => {
+                    uploadImage("img", logoUpload);
+                  }}
+                >
                   Upload Image
                 </Button>
               </InputGroup>
