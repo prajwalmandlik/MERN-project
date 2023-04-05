@@ -23,7 +23,8 @@ import { v4 } from "uuid";
 
 const SchemeForm = ({ id }) => {
   const { schemeData, setSchemeData } = useContext(Context);
-  const [imageUpload, setImageUpload] = useState(null);
+  const [flareUpload, setFlareUpload] = useState(null);
+  const [logoUpload, setLogoUpload] = useState(null);
   const navigate = useNavigate();
 
   let name, value;
@@ -37,16 +38,30 @@ const SchemeForm = ({ id }) => {
     setSchemeData({ ...schemeData, [ref]: data });
   };
 
-  const uploadImage = async () => {
-    if (imageUpload === null) {
+  // const uploadFlare = async () => {
+  //   if (flareUpload === null) {
+  //     toast.error("Select image");
+  //     return;
+  //   }
+  //   const imageRef = ref(storage, `flare/${flareUpload.name + v4()}`);
+  //   uploadBytes(imageRef, flareUpload).then(() => {
+  //     toast.success("image Upload");
+  //     getDownloadURL(imageRef).then((url) => {
+  //       setSchemeData({ ...schemeData, flare: url });
+  //     });
+  //   });
+  // };
+
+  const uploadImage = async (filedName, image) => {
+    if (image === null) {
       toast.error("Select image");
       return;
     }
-    const imageRef = ref(storage, `flare/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
+    const imageRef = ref(storage, `${filedName}/${image.name + v4()}`);
+    uploadBytes(imageRef, image).then(() => {
       toast.success("image Upload");
       getDownloadURL(imageRef).then((url) => {
-        setSchemeData({ ...schemeData, flare: url });
+        setSchemeData({ ...schemeData, [filedName]: url });
       });
     });
   };
@@ -105,36 +120,7 @@ const SchemeForm = ({ id }) => {
       <Container>
         <form onSubmit={handleSubmit}>
           <Stack spacing={"1rem"} py={10}>
-            <FormControl>
-              <FormLabel htmlFor="flare">Flare</FormLabel>
-              <InputGroup>
-                <Input
-                  type="file"
-                  name="flare"
-                  id="flare"
-                  // value={schemeData.flare}
-                  // onChange={updateData}
-                  onChange={(e) => {
-                    setImageUpload(e.target.files[0]);
-                  }}
-                />
-                <Button bg={"blackAlpha.100"} onClick={uploadImage}>
-                  Upload Image
-                </Button>
-              </InputGroup>
-            </FormControl>
             {/* <FormControl>
-              <FormLabel htmlFor="flare">Flare</FormLabel>
-              <Input
-                type="link"
-                name="flare"
-                id="flare"
-                value={schemeData.flare}
-                onChange={updateData}
-                required
-              />
-            </FormControl> */}
-            <FormControl>
               <FormLabel htmlFor="img">Logo</FormLabel>
               <Input
                 type="link"
@@ -144,7 +130,7 @@ const SchemeForm = ({ id }) => {
                 onChange={updateData}
                 required
               />
-            </FormControl>
+            </FormControl> */}
             <FormControl>
               <FormLabel htmlFor="title">Title</FormLabel>
               <Input
@@ -165,6 +151,42 @@ const SchemeForm = ({ id }) => {
                 onChange={updateData}
                 required
               />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="flare">Flare</FormLabel>
+              <InputGroup>
+                <Input
+                  type="file"
+                  name="flare"
+                  id="flare"
+                  // value={schemeData.flare}
+                  // onChange={updateData}
+                  onChange={(e) => {
+                    setFlareUpload(e.target.files[0]);
+                  }}
+                />
+                <Button bg={"blackAlpha.100"} onClick={() => {uploadImage("flare", flareUpload)}}>
+                  Upload Image
+                </Button>
+              </InputGroup>
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="logo">Logo</FormLabel>
+              <InputGroup>
+                <Input
+                  type="file"
+                  name="img"
+                  id="logo"
+                  // value={schemeData.flare}
+                  // onChange={updateData}
+                  onChange={(e) => {
+                    setLogoUpload(e.target.files[0]);
+                  }}
+                />
+                <Button bg={"blackAlpha.100"} onClick={() => {uploadImage("img", logoUpload)}}>
+                  Upload Image
+                </Button>
+              </InputGroup>
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="department">Department</FormLabel>
