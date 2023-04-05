@@ -9,10 +9,10 @@ import schema from './componentes/schema'
 
 export const server = "http://localhost:4000/api/v1";
 
-export const Context = createContext({ isAuthenticated: true });
+export const Context = createContext({ isAuthenticated: false });
 
 const AppWrapper = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
   const [schemeData , setSchemeData] = useState({...schema});
