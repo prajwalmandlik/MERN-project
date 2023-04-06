@@ -18,4 +18,4 @@ root.render(
 );
 
 
-export const server = "https://adhikar-backendl.vercel.app/api/v1"
+export const server = "https://adhikar-backend.onrender.com/api/v1"
