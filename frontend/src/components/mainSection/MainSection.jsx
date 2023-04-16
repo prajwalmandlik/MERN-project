@@ -27,14 +27,6 @@ const url = [`getAll`, `search/${search}`,`filter/${filter}`]
 
   useEffect(() => {
 
-    if(filter === "all" && search === ''){
-      console.log(0)
-    }else if(filter === "all"){
-      console.log(1)
-    }else{
-      console.log(2)
-    }
-
     if (filter === "all" && search === '') {
       axios
         .get(`${server}/scheme/${url[0]}`, {
@@ -64,7 +56,7 @@ const url = [`getAll`, `search/${search}`,`filter/${filter}`]
         console.log(error.message);
       }
     }
-  }, [filter, login,search ]);
+  }, [filter, login, search]);
 
   return (
     <>

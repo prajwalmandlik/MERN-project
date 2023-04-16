@@ -13,11 +13,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { server } from "../..";
-import { data } from "../mainSection/Data";
+// import { data } from "../mainSection/Data";
 
 const SchemeDetails = () => {
   const {id} = useParams();
-  const [schemeData, setSchemeData] = useState(data[0])
+  const [schemeData, setSchemeData] = useState({})
 
 useEffect( ()=>{
   try {

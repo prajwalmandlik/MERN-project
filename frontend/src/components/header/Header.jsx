@@ -5,7 +5,6 @@ import {
   Avatar,
   Box,
   Button,
-  Flex,
   HStack,
   Image,
   Input,
@@ -48,9 +47,11 @@ const Header = () => {
         payload: false,
       });
 
+      const data = { name: "", email: "" }
+
       dispatch({
         type: "updateUserData",
-        payload: { name: "", email: "" },
+        payload: data,
       });
     } catch (error) {
       toast.error(error.response.data.message);

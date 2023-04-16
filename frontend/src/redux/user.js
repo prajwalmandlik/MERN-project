@@ -3,8 +3,8 @@ import { createReducer } from "@reduxjs/toolkit"
 const user = {
   login: false,
   userData: {
-    name: "",
-    email: ""
+    name: "adhikar",
+    email: "adhikar@gmail.com"
   }
 }
 

@@ -18,4 +18,12 @@ root.render(
 );
 
 
+<<<<<<< Updated upstream
 export const server = "https://adhikar-backend.onrender.com/api/v1"
+=======
+<<<<<<< HEAD
+export const server = "https://adhikar-backend.onrender.com/api/v1"
+=======
+export const server = "https://adhikar-backend.onrender.com/api/v1"
+>>>>>>> 4ea19ea6354fe54bbe3689da9a132616dc5e59ad
+>>>>>>> Stashed changes

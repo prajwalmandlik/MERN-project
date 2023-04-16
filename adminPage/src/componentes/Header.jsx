@@ -30,8 +30,9 @@ export default function Header() {
       await axios.get(`${server}/admin/logout`, {
         withCredentials: true,
       });
+      const data = { email: "" }
       setIsAuthenticated(false);
-      setUser({ email: "" });
+      setUser(data);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -75,7 +76,7 @@ export default function Header() {
                   </Center>
                   <br />
                   <Center>
-                    <p>{user.email}</p>
+                    {/* <p>{user.email}</p> */}
                   </Center>
                   <br />
                   <MenuDivider />
