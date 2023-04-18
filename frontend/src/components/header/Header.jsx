@@ -27,12 +27,9 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   // const [mobileView, setMobileView] = useState(false);
   const { login } = useSelector((state) => state.user);
-  const { userData } = useSelector((state) => state.user);
-  const { name } = userData;
+  const { name } = useSelector((state) => state.user);
   const [value, setValue] = useState("");
   const navigate = useNavigate()
-
-  const userName = name.split(" ");
   const dispatch = useDispatch();
 
   const logOut = async () => {
@@ -47,7 +44,7 @@ const Header = () => {
         payload: false,
       });
 
-      const data = { name: "", email: "" }
+      const data = { name: "adhikar", email: "adhikar@gmail.com" }
 
       dispatch({
         type: "updateUserData",
@@ -129,7 +126,7 @@ const Header = () => {
               </Box>
               <Box>
                 {login ? (
-                  <User name={userName[0]} nameLogo={name} logOut={logOut} />
+                  <User name={name} logOut={logOut} />
                 ) : (
                   <>
                     <Link to={`/login`}>
@@ -148,12 +145,12 @@ const Header = () => {
   );
 };
 
-const User = ({ name, nameLogo, logOut }) => (
+const User = ({ name, logOut }) => (
   <>
     <Menu>
       <MenuButton>
         <HStack>
-          <Avatar size="sm" name={nameLogo} />
+          <Avatar size="sm" name={name} />
           <Text>{name.toUpperCase()}</Text>
         </HStack>
       </MenuButton>
