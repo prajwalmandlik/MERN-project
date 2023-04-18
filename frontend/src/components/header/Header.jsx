@@ -27,9 +27,10 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   // const [mobileView, setMobileView] = useState(false);
   const { login } = useSelector((state) => state.user);
-  const { name } = useSelector((state) => state.user);
+  const { userData } = useSelector((state) => state.user);
   const [value, setValue] = useState("");
-  const navigate = useNavigate()
+  const [searchState, setSearchState] = useState(true);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logOut = async () => {
@@ -44,7 +45,7 @@ const Header = () => {
         payload: false,
       });
 
-      const data = { name: "adhikar", email: "adhikar@gmail.com" }
+      const data = { name: "adhikar", email: "adhikar@gmail.com" };
 
       dispatch({
         type: "updateUserData",
@@ -57,23 +58,26 @@ const Header = () => {
 
   const searchItem = (e) => {
     e.preventDefault();
+    if (value === "") {
+      setSearchState((state) => !state);
+    } else {
+      dispatch({
+        type: "searchItem",
+        payload: value,
+      });
 
-    dispatch({
-      type: "searchItem",
-      payload: value,
-    });
+      dispatch({
+        type: "applyFilter",
+        payload: "all",
+      });
 
-    dispatch({
-      type: "applyFilter",
-      payload: "all",
-    });
-
-    navigate("/")
+      navigate("/");
+    }
   };
 
   return (
     <div className="header-cantainer">
-      <Box  px={[2, 2, 2, 10]}>
+      <Box px={[2, 2, 2, 10]}>
         <HStack h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <NavLink to={`/`}>
@@ -86,8 +90,8 @@ const Header = () => {
             <HStack>
               <Box>
                 <form onSubmit={searchItem}>
-                  <HStack gap={[0,0,0,"1rem"]}>
-                    <InputGroup>
+                  <HStack gap={[0, 0, 0, "1rem"]}>
+                    <InputGroup hidden={searchState}>
                       <Input
                         type="text"
                         placeholder="Search"
@@ -105,7 +109,7 @@ const Header = () => {
                           _focus={{ bg: "inherit" }}
                           _active={{ bg: "inherit" }}
                           _hover={{ bg: "inherit" }}
-                          hidden={(value === '') ? true : false}
+                          hidden={value === "" ? true : false}
                         >
                           <CloseIcon fontSize={".8rem"} />
                         </Button>
@@ -117,7 +121,7 @@ const Header = () => {
                       _focus={{ bg: "inherit" }}
                       _active={{ bg: "inherit" }}
                       _hover={{ bg: "inherit" }}
-                      px={[0,0,"1rem"]}
+                      px={[0, 0, "1rem"]}
                     >
                       <SearchIcon />
                     </Button>
@@ -126,7 +130,7 @@ const Header = () => {
               </Box>
               <Box>
                 {login ? (
-                  <User name={name} logOut={logOut} />
+                  <User name={userData.name} logOut={logOut} />
                 ) : (
                   <>
                     <Link to={`/login`}>
@@ -145,23 +149,27 @@ const Header = () => {
   );
 };
 
-const User = ({ name, logOut }) => (
-  <>
-    <Menu>
-      <MenuButton>
-        <HStack>
-          <Avatar size="sm" name={name} />
-          <Text>{name.toUpperCase()}</Text>
-        </HStack>
-      </MenuButton>
-      <MenuList m={"0 2rem"} minW={"3rem"}>
-        <Link to={`/profile`}>
-          <MenuItem>Profile</MenuItem>
-        </Link>
-        <MenuItem onClick={logOut}>Log out</MenuItem>
-      </MenuList>
-    </Menu>
-  </>
-);
+const User = ({ name, logOut }) => {
+  const firstName = name.split(" ")[0];
+
+  return (
+    <>
+      <Menu>
+        <MenuButton>
+          <HStack>
+            <Avatar size="sm" name={name} />
+            <Text>{firstName.toUpperCase()}</Text>
+          </HStack>
+        </MenuButton>
+        <MenuList m={"0 2rem"} minW={"3rem"}>
+          <Link to={`/profile`}>
+            <MenuItem>Profile</MenuItem>
+          </Link>
+          <MenuItem onClick={logOut}>Log out</MenuItem>
+        </MenuList>
+      </Menu>
+    </>
+  );
+};
 
 export default Header;

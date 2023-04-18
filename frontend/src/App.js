@@ -27,7 +27,7 @@ function App() {
 
     dispatch({
       type: "updateUserData",
-      payload: userData,
+      payload: {...userData},
     });
   }
 
