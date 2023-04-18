@@ -42,7 +42,7 @@ function App() {
         updateUser(true, userData);
       })
       .catch((error) => {
-        const userData = { name: "", email: "" }
+        const userData = { name: "adhikar", email: "adhikar@gmail.com" }
         updateUser(false, userData);
       });
   },[login])
