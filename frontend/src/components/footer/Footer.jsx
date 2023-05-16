@@ -16,6 +16,8 @@ import {
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
 import Logo from "../../assets/logo.png";
+import { Link as Li } from "react-router-dom";
+
 
 export default function LargeWithNewsletter() {
   return (
@@ -67,7 +69,7 @@ export default function LargeWithNewsletter() {
             </Heading>
             <Link href={"#"}>About us</Link>
             <Link href={"#"}>Blog</Link>
-            <Link href={"#"}>Contact us</Link>
+            <Li to={`/contact`} > <Link href={"#"}>Contact us</Link></Li>
             <Link href={"#"}>Pricing</Link>
             <Link href={"#"}>Testimonials</Link>
           </Stack>

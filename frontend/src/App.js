@@ -12,6 +12,8 @@ import { server } from ".";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Profile from "./components/profile/Profile";
+import ContactFormWithSocialButtons from "./components/contactForm/ContactForm";
+import { Toaster } from "react-hot-toast";
 // import Cookies from "js-cookie";
 
 
@@ -58,7 +60,9 @@ function App() {
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/details/:id" element={<SchemeDetails />} />
           <Route path="/profile" element={ <Profile /> } />
+          <Route path="/contact" element={ <ContactFormWithSocialButtons /> } />
         </Routes>
+        <Toaster />
         <Footer />
       </Router>
     </div>

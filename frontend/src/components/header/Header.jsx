@@ -91,7 +91,7 @@ const Header = () => {
               <Box>
                 <form onSubmit={searchItem}>
                   <HStack gap={[0, 0, 0, "1rem"]}>
-                    <InputGroup hidden={searchState}>
+                    <InputGroup >
                       <Input
                         type="text"
                         placeholder="Search"
